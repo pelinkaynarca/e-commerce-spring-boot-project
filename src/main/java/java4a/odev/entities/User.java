@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,9 +44,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
-    @Enumerated(EnumType.STRING)
-    private List<UserRole> userRoles;
-    @OneToMany(mappedBy = "user")
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
 }

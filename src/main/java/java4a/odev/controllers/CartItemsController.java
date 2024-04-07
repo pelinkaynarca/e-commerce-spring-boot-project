@@ -18,7 +18,7 @@ public class CartItemsController {
 
     private CartItemsController cartItemService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListCartItemResponse> getAll(){
         return cartItemService.getAll();
     }
@@ -28,13 +28,13 @@ public class CartItemsController {
         return cartItemService.getById(id);
     }
 
-    @PostMapping("/createCartItem")
+    @PostMapping("/create-cart-item")
     @ResponseStatus(HttpStatus.CREATED)
     public AddCartItemResponse add(@RequestBody @Valid AddCartItemsRequest request) {
         return cartItemService.add(request);
     }
 
-    @PutMapping("/updateCartItem")
+    @PutMapping("/update-cart-item")
     public UpdateCartItemResponse update(@RequestBody @Valid UpdateCartItemsRequest request) {
         return cartItemService.update(request);
     }

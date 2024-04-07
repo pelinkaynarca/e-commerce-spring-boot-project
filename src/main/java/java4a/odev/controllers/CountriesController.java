@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.dtos.requests.countries.AddCountryRequest;
@@ -18,7 +17,7 @@ import java.util.List;
 public class CountriesController {
     private CountriesController countryService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListCountryResponse> getAll(){
         return countryService.getAll();
     }
@@ -28,13 +27,13 @@ public class CountriesController {
         return countryService.getById(id);
     }
 
-    @PostMapping("/createCountry")
+    @PostMapping("/create-country")
     @ResponseStatus(HttpStatus.CREATED)
     public AddCountryResponse add(@RequestBody @Valid AddCountryRequest request) {
         return countryService.add(request);
     }
 
-    @PutMapping("/updateCountry")
+    @PutMapping("/update-country")
     public UpdateCountryResponse update(@RequestBody @Valid UpdateCountryRequest request) {
         return countryService.update(request);
     }

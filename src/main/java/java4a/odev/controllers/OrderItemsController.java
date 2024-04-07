@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 import java4a.odev.services.abstracts.OrderItemService;
 import java4a.odev.services.dtos.requests.orderitems.AddOrderItemRequest;
@@ -18,7 +17,7 @@ import java.util.List;
 public class OrderItemsController {
     private OrderItemService orderItemService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListOrderItemResponse> getAll(){
         return orderItemService.getAll();
     }
@@ -28,13 +27,13 @@ public class OrderItemsController {
         return orderItemService.getById(id);
     }
 
-    @PostMapping("/createOrderItem")
+    @PostMapping("/create-order-item")
     @ResponseStatus(HttpStatus.CREATED)
     public AddOrderItemResponse add(@RequestBody @Valid AddOrderItemRequest request) {
         return orderItemService.add(request);
     }
 
-    @PutMapping("/updateOrderItem")
+    @PutMapping("/update-order-item")
     public UpdateOrderItemResponse update(@RequestBody @Valid UpdateOrderItemRequest request) {
         return orderItemService.update(request);
     }

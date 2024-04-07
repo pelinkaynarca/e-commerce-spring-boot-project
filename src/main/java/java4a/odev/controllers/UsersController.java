@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.abstracts.UserService;
@@ -19,7 +18,7 @@ import java.util.List;
 public class UsersController {
     private UserService userService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListUserResponse> getAll(){
         return userService.getAll();
     }
@@ -28,13 +27,13 @@ public class UsersController {
         return userService.getById(id);
     }
 
-    @PostMapping("/createUser")
+    @PostMapping("/create-user")
     @ResponseStatus(HttpStatus.CREATED)
     public AddUserResponse add(@RequestBody @Valid AddUserRequest request) {
         return userService.add(request);
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping("/update-user")
     public UpdateUserResponse update(@RequestBody @Valid UpdateUserRequest request) {
         return userService.update(request);
     }

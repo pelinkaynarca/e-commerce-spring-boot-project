@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.abstracts.ImageService;
@@ -20,7 +19,7 @@ import java.util.List;
 public class ImagesController {
     private ImageService imageService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListImageResponse> getAll(){
         return imageService.getAll();
     }
@@ -30,13 +29,13 @@ public class ImagesController {
         return imageService.getById(id);
     }
 
-    @PostMapping("/createImage")
+    @PostMapping("/create-image")
     @ResponseStatus(HttpStatus.CREATED)
     public AddImageResponse add(@RequestBody @Valid AddImageRequest request) {
         return imageService.add(request);
     }
 
-    @PutMapping("/updateImage")
+    @PutMapping("/update-image")
     public UpdateImageResponse update(@RequestBody @Valid UpdateImageRequest request) {
         return imageService.update(request);
     }

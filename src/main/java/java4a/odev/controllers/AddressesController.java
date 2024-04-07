@@ -17,7 +17,7 @@ public class AddressesController {
 
     private AddressesController addressService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListAddressResponse> getAll(){
         return addressService.getAll();
     }
@@ -27,13 +27,13 @@ public class AddressesController {
         return addressService.getById(id);
     }
 
-    @PostMapping("/createAddress")
+    @PostMapping("/create-address")
     @ResponseStatus(HttpStatus.CREATED)
     public AddAddressResponse add(@RequestBody @Valid AddAddressRequest request) {
         return addressService.add(request);
     }
 
-    @PutMapping("/updateAddress")
+    @PutMapping("/update-address")
     public UpdateAddressResponse update(@RequestBody @Valid UpdateAddressRequest request) {
         return addressService.update(request);
     }

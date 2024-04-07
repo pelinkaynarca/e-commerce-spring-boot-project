@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.dtos.requests.categories.AddCategoryRequest;
@@ -21,7 +20,7 @@ public class CategoriesController {
 
     private CategoriesController categoryService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListCategoryResponse> getAll(){
         return categoryService.getAll();
     }
@@ -31,13 +30,13 @@ public class CategoriesController {
         return categoryService.getById(id);
     }
 
-    @PostMapping("/createCategory")
+    @PostMapping("/create-category")
     @ResponseStatus(HttpStatus.CREATED)
     public AddCategoryResponse add(@RequestBody @Valid AddCategoryRequest request) {
         return categoryService.add(request);
     }
 
-    @PutMapping("/updateCategory")
+    @PutMapping("/update-category")
     public UpdateCategoryResponse update(@RequestBody @Valid UpdateCategoryRequest request) {
         return categoryService.update(request);
     }
@@ -47,7 +46,7 @@ public class CategoriesController {
         categoryService.delete(id);
     }
 
-    @GetMapping("/getByParent")
+    @GetMapping("/get-parent")
     public List<ListCategoryResponse> getCategoriesByParentId(@RequestParam Optional<Integer> parentId) {
         return categoryService.getCategoriesByParentId(parentId);
     }

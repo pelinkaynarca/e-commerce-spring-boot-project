@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 import java4a.odev.services.abstracts.ProductService;
 import java4a.odev.services.dtos.requests.products.AddProductRequest;
@@ -19,7 +18,7 @@ import java.util.List;
 public class ProductsController {
     private ProductService productService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListProductResponse> getAll(){
         return productService.getAll();
     }
@@ -28,13 +27,13 @@ public class ProductsController {
         return productService.getById(id);
     }
 
-    @PostMapping("/createProduct")
+    @PostMapping("/create-product")
     @ResponseStatus(HttpStatus.CREATED)
     public AddProductResponse add(@RequestBody @Valid AddProductRequest request) {
         return productService.add(request);
     }
 
-    @PutMapping("/updateProduct")
+    @PutMapping("/update-product")
     public UpdateProductResponse update(@RequestBody @Valid UpdateProductRequest request) {
         return productService.update(request);
     }
@@ -43,22 +42,22 @@ public class ProductsController {
     public void delete(@PathVariable int id) {
         productService.delete(id);
     }
-    @GetMapping("/searchByName")
+    @GetMapping("/search-by-name")
     public List<ListProductResponse> findByName(@RequestParam String name) {
         return productService.getByNameLikeIgnoreCase(name);
     }
 
-    @GetMapping("/searchByPriceRange")
+    @GetMapping("/search-by-price-range")
     public List<ListProductResponse> findByPriceRange(@RequestParam double p1, @RequestParam double p2) {
         return productService.getByUnitPriceBetween(p1, p2);
     }
 
-    @GetMapping("/searchByCategory/{categoryId}")
+    @GetMapping("/search-by-category/{categoryId}")
     public List<ListProductResponse> findByCategory(@PathVariable int categoryId) {
         return productService.getByCategoryId(categoryId);
     }
 
-    @GetMapping("/latestProducts")
+    @GetMapping("/latest-products")
     public List<ListProductResponse> getLatestProducts(@RequestParam int limit) {
         return productService.getByCreatedAtDesc(limit);
     }

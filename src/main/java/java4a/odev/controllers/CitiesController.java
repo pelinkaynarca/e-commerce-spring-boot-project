@@ -1,6 +1,5 @@
 package java4a.odev.controllers;
 
-import io.swagger.annotations.Api;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.dtos.requests.cities.AddCityRequest;
@@ -20,7 +19,7 @@ public class CitiesController {
 
     private CitiesController cityService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public List<ListCityResponse> getAll(){
         return cityService.getAll();
     }
@@ -30,13 +29,13 @@ public class CitiesController {
         return cityService.getById(id);
     }
 
-    @PostMapping("/createCity")
+    @PostMapping("/create-city")
     @ResponseStatus(HttpStatus.CREATED)
     public AddCityResponse add(@RequestBody @Valid AddCityRequest request) {
         return cityService.add(request);
     }
 
-    @PutMapping("/updateCity")
+    @PutMapping("/update-city")
     public UpdateCityResponse update(@RequestBody @Valid UpdateCityRequest request) {
         return cityService.update(request);
     }

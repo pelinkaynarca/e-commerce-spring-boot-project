@@ -14,6 +14,6 @@ import java.time.LocalDateTime;
 public class ListCategoryResponse {
     private int id;
     private String name;
-    private int parentId;
+    private Integer parentId;
     private LocalDateTime createdAt;
 }

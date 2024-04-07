@@ -18,7 +18,7 @@ public class AddAddressRequest {
     @Size(min=2, max=50, message = "Adres 2 ile 50 karakter arasında olmalıdır.")
     private String description;
 
-    @Min(value=0, message = "cityId 0'dan küçük değer alamaz.")
+    @Min(value=0, message = "postalCode 0'dan küçük değer alamaz.")
     private int postalCode;
 
     @Min(value=0, message = "cityId 0'dan küçük değer alamaz.")

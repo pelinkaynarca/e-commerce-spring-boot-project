@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateCartRequest {
+public class UpdateCartItemsRequest {
     @Min(value=0, message = "Kimlik numarası 0'dan küçük değer alamaz.")
     private int id;
 

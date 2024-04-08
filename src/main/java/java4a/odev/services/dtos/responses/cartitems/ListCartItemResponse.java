@@ -1,7 +1,5 @@
 package java4a.odev.services.dtos.responses.cartitems;
 
-import java4a.odev.services.dtos.responses.products.ListProductResponse;
-import java4a.odev.services.dtos.responses.users.ListUserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ListCartItemResponse {
 
-    private int id;
+	private int id;
 
-    private String name;
+	private int quantity;
 
-    private int quantity;
+	private String userFirstName;
 
-    private ListUserResponse listUserResponse;
+	private String userLastName;
 
-    private ListProductResponse listProductResponse;
+	private String productName;
+
 }
-
-
-

@@ -9,20 +9,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UpdateUserResponse {
 
-    private int id;
+	private int id;
 
-    private String firstName;
+	private String firstName;
 
-    private String lastName;
+	private String lastName;
 
-    private String username;
+	private String username;
 
-    private String email;
+	private String email;
 
-    private String phone;
-
+	private String phone;
 
 }

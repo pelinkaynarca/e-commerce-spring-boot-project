@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UpdateCountryResponse {
-    private int id;
+	
+	private int id;
 
-    private String name;
+	private String name;
+
 }

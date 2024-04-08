@@ -1,6 +1,5 @@
 package java4a.odev.services.dtos.responses.products;
 
-import java4a.odev.services.dtos.responses.categories.ListCategoryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,20 +11,22 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class AddProductResponse {
 
-    private int id;
+	private int id;
 
-    private ListCategoryResponse listCategoryResponse;
+	private String name;
 
-    private String name;
+	private double unitPrice;
 
-    private double unitPrice;
+	private int stockQuantity;
 
-    private int stockQuantity;
+	private LocalDateTime createdAt;
 
-    private LocalDateTime createdAt;
+	private String description;
 
-    private String description;
+	private int categoryId;
+
+	private String categoryName;
+
 }

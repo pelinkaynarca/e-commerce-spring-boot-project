@@ -1,6 +1,5 @@
 package java4a.odev.services.dtos.responses.orders;
 
-import java4a.odev.services.dtos.responses.users.ListUserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +11,16 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UpdateOrderResponse {
 
-    private int id;
+	private int id;
 
-    private LocalDateTime createdAt;
+	private LocalDateTime createdAt;
 
-    private ListUserResponse listUserResponse;
+	private int userId;
+
+	private String userFirstName;
+
+	private String userLastName;
+
 }

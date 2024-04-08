@@ -9,19 +9,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class ListUserResponse {
-    private int id;
 
-    private String firstName;
+	private int id;
 
-    private String lastName;
+	private String firstName;
 
-    private String username;
+	private String lastName;
 
-    private String email;
+	private String username;
 
-    private String phone;
+	private String email;
 
+	private String phone;
 
 }

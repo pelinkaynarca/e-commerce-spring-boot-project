@@ -12,9 +12,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCategoryResponse {
-    private int id;
-    private String name;
-    private int parentId;
-    private LocalDateTime createdAt;
+
+	private int id;
+
+	private String name;
+
+	private LocalDateTime createdAt;
+
+	private Integer parentId;
+	
+	private String parentCategoryName;
 
 }

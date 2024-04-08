@@ -1,6 +1,5 @@
 package java4a.odev.services.dtos.responses.cities;
 
-import java4a.odev.services.dtos.responses.countries.ListCountryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +9,14 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UpdateCityResponse {
 
-    private int id;
+	private int id;
 
-    private String name;
+	private String name;
 
-    private ListCountryResponse listCountryResponse;
+	private int countryId;
+
+	private String countryName;
+
 }

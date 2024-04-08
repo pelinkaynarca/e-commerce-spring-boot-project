@@ -9,12 +9,12 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ProductMapper {
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+	ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(target="category.id", source = "categoryId")
-    Product productFromAddRequest(AddProductRequest request);
+	@Mapping(target = "category.id", source = "categoryId")
+	Product productFromAddRequest(AddProductRequest request);
 
-
-    @Mapping(target = "listCategoryResponse", source = "category")
-    AddProductResponse addResponseFromProduct(Product product);
+	@Mapping(target = "categoryId", source = "category.id")
+	@Mapping(target = "categoryName", source = "category.name")
+	AddProductResponse addResponseFromProduct(Product product);
 }

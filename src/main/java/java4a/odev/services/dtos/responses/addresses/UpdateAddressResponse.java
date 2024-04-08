@@ -1,7 +1,5 @@
 package java4a.odev.services.dtos.responses.addresses;
 
-import java4a.odev.services.dtos.responses.cities.ListCityResponse;
-import java4a.odev.services.dtos.responses.users.ListUserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class UpdateAddressResponse {
 
     private int id;
@@ -20,7 +17,12 @@ public class UpdateAddressResponse {
 
     private int postalCode;
 
-    private ListCityResponse listCityResponse;
+    private String city;
 
-    private ListUserResponse listUserResponse;
+	private String country;
+
+	private String userFirstName;
+
+	private String userLastName;
+	
 }

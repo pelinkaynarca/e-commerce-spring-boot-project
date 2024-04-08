@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/images")
-
 public class ImagesController {
     private ImageService imageService;
 

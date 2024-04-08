@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateRoleRequest {
-    @Min(value=0, message = "Kimlik numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
     private int id;
 
     @Size(min=2, max=10, message = "Ürün adı 2 ile 10 karakter arasında olmalıdır.")

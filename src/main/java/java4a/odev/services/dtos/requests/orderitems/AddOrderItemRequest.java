@@ -11,16 +11,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddOrderItemRequest {
-
-    @Min(value=0, message = "Sipariş miktarı 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Ürün miktarı 0'dan küçük değer alamaz.")
     private int quantity;
 
-    @Min(value=0, message = "Toplam fiyat 0'dan küçük değer alamaz.")
-    private double totalPrice;
-
-    @Min(value=0, message = "Sipariş numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Sipariş ID'si 0'dan küçük değer alamaz.")
     private int orderId;
 
-    @Min(value=0, message = "Ürün numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Ürün ID'si 0'dan küçük değer alamaz.")
     private int productId;
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/api/orders")
-
 public class OrdersController {
     private OrderService orderService;
 
@@ -21,6 +20,7 @@ public class OrdersController {
     public List<ListOrderResponse> getAll(){
         return orderService.getAll();
     }
+
     @GetMapping("/{id}")
     public ListOrderResponse getById(@PathVariable int id){
         return orderService.getById(id);

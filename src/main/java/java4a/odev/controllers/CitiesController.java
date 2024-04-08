@@ -14,9 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cities")
-
 public class CitiesController {
-
     private CitiesController cityService;
 
     @GetMapping("/get-all")

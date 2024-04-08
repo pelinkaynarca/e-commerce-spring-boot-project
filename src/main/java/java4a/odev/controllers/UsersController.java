@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/api/users")
-
 public class UsersController {
     private UserService userService;
 
@@ -22,6 +21,7 @@ public class UsersController {
     public List<ListUserResponse> getAll(){
         return userService.getAll();
     }
+
     @GetMapping("/{id}")
     public ListUserResponse getById(@PathVariable int id){
         return userService.getById(id);

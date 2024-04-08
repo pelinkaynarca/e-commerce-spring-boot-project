@@ -11,16 +11,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddCartItemsRequest {
-
-    @Min(value=0, message = "Sepet Miktarı 0'dan küçük olamaz.")
+    @Min(value=1, message = "Sepet Miktarı 0'dan küçük olamaz.")
     private int quantity;
 
-    @Min(value=0, message = "cartId 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Sepet ID'si 0'dan küçük değer alamaz.")
     private int cartId;
 
-    @Min(value=0, message = "productId 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Ürün ID'si 0'dan küçük değer alamaz.")
     private int productId;
 
-    @Min(value=0, message = "Kullanıcı numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Kullanıcı ID'si 0'dan küçük değer alamaz.")
     private int userId;
 }

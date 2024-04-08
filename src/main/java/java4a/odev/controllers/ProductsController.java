@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
-
 public class ProductsController {
     private ProductService productService;
 
@@ -22,6 +21,7 @@ public class ProductsController {
     public List<ListProductResponse> getAll(){
         return productService.getAll();
     }
+
     @GetMapping("/{id}")
     public ListProductResponse getById(@PathVariable int id){
         return productService.getById(id);

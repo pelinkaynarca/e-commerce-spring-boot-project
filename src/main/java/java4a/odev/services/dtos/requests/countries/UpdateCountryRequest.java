@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCountryRequest {
-    @Min(value=0, message = "Kimlik numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
     private int id;
 
     @NotBlank(message = "Ürün adı boş olamaz.")

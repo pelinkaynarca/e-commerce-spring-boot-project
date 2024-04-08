@@ -14,5 +14,4 @@ public interface ImageService {
     AddImageResponse add(AddImageRequest request);
     UpdateImageResponse update(UpdateImageRequest request);
     void delete(int id);
-
 }

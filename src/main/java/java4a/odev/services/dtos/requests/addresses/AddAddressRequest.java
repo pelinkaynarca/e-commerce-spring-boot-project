@@ -13,17 +13,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddAddressRequest {
-
     @NotBlank(message = "Ürün adı boş olamaz.")
-    @Size(min=2, max=50, message = "Adres 2 ile 50 karakter arasında olmalıdır.")
+    @Size(min=2, max=100, message = "Adres 2 ile 100 karakter arasında olmalıdır.")
     private String description;
 
-    @Min(value=0, message = "postalCode 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Posta kodu 0'dan küçük değer alamaz.")
     private int postalCode;
 
-    @Min(value=0, message = "cityId 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Şehir ID'si 0'dan küçük değer alamaz.")
     private int cityId;
 
-    @Min(value=0, message = "userId 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Kullanıcı ID'si 0'dan küçük değer alamaz.")
     private int userId;
 }

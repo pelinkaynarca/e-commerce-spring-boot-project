@@ -9,7 +9,6 @@ import java4a.odev.services.dtos.responses.cartitems.UpdateCartItemResponse;
 import java.util.List;
 
 public interface CartItemService {
-
     List<ListCartItemResponse> getAll();
     ListCartItemResponse getById(int id);
     AddCartItemResponse add(AddCartItemsRequest request);

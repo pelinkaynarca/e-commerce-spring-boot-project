@@ -13,13 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCityRequest {
-    @Min(value=0, message = "Kimlik numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
     private int id;
 
     @NotBlank(message = "Şehir kısmı boş olamaz.")
     @Size(min=2, max=50, message = "Şehir 2 ile 50 karakter arasında olmalıdır.")
     private String name;
 
-    @Min(value=0, message = "Ülke numarası 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Ülke ID'si 0'dan küçük değer alamaz.")
     private int countryId;
 }

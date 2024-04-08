@@ -11,13 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
-
 public class CategoriesController {
-
     private CategoriesController categoryService;
 
     @GetMapping("/get-all")
@@ -47,7 +44,7 @@ public class CategoriesController {
     }
 
     @GetMapping("/get-parent")
-    public List<ListCategoryResponse> getCategoriesByParentId(@RequestParam Optional<Integer> parentId) {
-        return categoryService.getCategoriesByParentId(parentId);
+    public List<ListCategoryResponse> getByParentId(@RequestParam Integer parentId) {
+        return categoryService.getByParentId(parentId);
     }
 }

@@ -14,7 +14,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/addresses")
 public class AddressesController {
-
     private AddressesController addressService;
 
     @GetMapping("/get-all")

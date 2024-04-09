@@ -15,6 +15,7 @@ public interface AddressMapper {
 
     AddressMapper INSTANCE = Mappers.getMapper(AddressMapper.class);
 
+    //add
     //source => request
     //target => entity
     @Mapping(source = "cityId", target = "city.id")
@@ -27,7 +28,8 @@ public interface AddressMapper {
     @Mapping(source = "user.firstName", target = "userFirstName")
     @Mapping(source = "user.lastName", target = "userLastName")
     AddAddressResponse addResponseFromAddress(Address address);
-//----
+
+    //update
     //source => request
     //target => entity
     @Mapping(source = "cityId", target = "city.id")

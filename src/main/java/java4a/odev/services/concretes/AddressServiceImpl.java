@@ -48,7 +48,12 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public UpdateAddressResponse update(UpdateAddressRequest request) {
-        return null;
+        Address address = AddressMapper.INSTANCE.addressFromUpdateRequest(request);
+        address = addressRepository.save(address);
+
+        UpdateAddressResponse updateAddressResponse = AddressMapper.INSTANCE.updateResponseFromAddress(address);
+
+        return updateAddressResponse;
     }
 
     @Override

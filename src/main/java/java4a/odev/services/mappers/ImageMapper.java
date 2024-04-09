@@ -30,7 +30,6 @@ public interface ImageMapper {
     Image imageFromAddRequest(AddImageRequest request);
 
     @Mapping(target = "productId" , source = "product.id")
-    @Mapping(target = "productName", source = "product.name")
     AddImageResponse addResponseFromImage(Image image);
 
  // update
@@ -39,7 +38,6 @@ public interface ImageMapper {
     Image imageFromUpdateRequest(UpdateImageRequest request);
 
     @Mapping(source = "product.id" , target = "productId")
-    @Mapping(source = "product.name", target = "productName")
     AddImageResponse updateResponseFromImage(Image image);
 
 

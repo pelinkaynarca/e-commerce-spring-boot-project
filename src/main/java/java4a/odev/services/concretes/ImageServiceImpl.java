@@ -41,7 +41,7 @@ public class ImageServiceImpl implements ImageService {
        Image image = imageRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Image not found with id: " + request.getId()));
        image = imageRepository.save(image);
 
-       return ImageMapper.INSTANCE.updateImageResponseFromImage(image);
+        return ImageMapper.INSTANCE.updateImageResponseFromImage(image);
     }
 
     @Override

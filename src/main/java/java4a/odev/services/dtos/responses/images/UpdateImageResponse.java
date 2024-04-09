@@ -17,6 +17,5 @@ public class UpdateImageResponse {
 
 	private int productId;
 
-	private String productName;
 
 }

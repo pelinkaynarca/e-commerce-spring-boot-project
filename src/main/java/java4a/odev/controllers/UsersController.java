@@ -8,11 +8,13 @@ import java4a.odev.services.dtos.requests.users.UpdateUserRequest;
 import java4a.odev.services.dtos.responses.users.AddUserResponse;
 import java4a.odev.services.dtos.responses.users.ListUserResponse;
 import java4a.odev.services.dtos.responses.users.UpdateUserResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/users")
 public class UsersController {
     private UserService userService;

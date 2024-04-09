@@ -8,6 +8,7 @@ import java4a.odev.services.dtos.requests.images.UpdateImageRequest;
 import java4a.odev.services.dtos.responses.images.AddImageResponse;
 import java4a.odev.services.dtos.responses.images.ListImageResponse;
 import java4a.odev.services.dtos.responses.images.UpdateImageResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/images")
+@AllArgsConstructor
 public class ImagesController {
     private ImageService imageService;
 

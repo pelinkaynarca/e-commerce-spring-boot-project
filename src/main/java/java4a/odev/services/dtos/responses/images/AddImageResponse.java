@@ -17,6 +17,6 @@ public class AddImageResponse {
 
 	private int productId;
 
-	private String productName;
+
 
 }

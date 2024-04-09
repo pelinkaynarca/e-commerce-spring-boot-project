@@ -2,6 +2,7 @@ package java4a.odev.controllers;
 
 import jakarta.validation.Valid;
 
+import java4a.odev.services.abstracts.CityService;
 import java4a.odev.services.dtos.requests.cities.AddCityRequest;
 import java4a.odev.services.dtos.requests.cities.UpdateCityRequest;
 import java4a.odev.services.dtos.responses.cities.AddCityResponse;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cities")
 public class CitiesController {
-    private CitiesController cityService;
+    private CityService cityService;
 
     @GetMapping("/get-all")
     public List<ListCityResponse> getAll(){

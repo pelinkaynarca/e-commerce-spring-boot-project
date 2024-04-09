@@ -2,19 +2,22 @@ package java4a.odev.controllers;
 
 import jakarta.validation.Valid;
 
+import java4a.odev.services.abstracts.CountryService;
 import java4a.odev.services.dtos.requests.countries.AddCountryRequest;
 import java4a.odev.services.dtos.requests.countries.UpdateCountryRequest;
 import java4a.odev.services.dtos.responses.countries.AddCountryResponse;
 import java4a.odev.services.dtos.responses.countries.ListCountryResponse;
 import java4a.odev.services.dtos.responses.countries.UpdateCountryResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
 @RequestMapping("/api/countries")
+@AllArgsConstructor
 public class CountriesController {
-    private CountriesController countryService;
+    private CountryService countryService;
 
     @GetMapping("/get-all")
     public List<ListCountryResponse> getAll(){

@@ -2,6 +2,7 @@ package java4a.odev.controllers;
 
 import jakarta.validation.Valid;
 
+import java4a.odev.services.abstracts.CartItemService;
 import java4a.odev.services.dtos.requests.cartitems.AddCartItemsRequest;
 import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemsRequest;
 import java4a.odev.services.dtos.responses.cartitems.AddCartItemResponse;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cartItems")
+@RequestMapping("/api/cart-items")
 public class CartItemsController {
-    private CartItemsController cartItemService;
+    private CartItemService cartItemService;
 
     @GetMapping("/get-all")
     public List<ListCartItemResponse> getAll(){

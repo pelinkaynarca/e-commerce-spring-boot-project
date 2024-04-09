@@ -2,6 +2,7 @@ package java4a.odev.controllers;
 
 import jakarta.validation.Valid;
 
+import java4a.odev.services.abstracts.CategoryService;
 import java4a.odev.services.dtos.requests.categories.AddCategoryRequest;
 import java4a.odev.services.dtos.requests.categories.UpdateCategoryRequest;
 import java4a.odev.services.dtos.responses.categories.AddCategoryResponse;
@@ -15,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoriesController {
-    private CategoriesController categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("/get-all")
     public List<ListCategoryResponse> getAll(){

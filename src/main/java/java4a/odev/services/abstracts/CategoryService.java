@@ -15,5 +15,5 @@ public interface CategoryService {
     AddCategoryResponse add(AddCategoryRequest request);
     UpdateCategoryResponse update(UpdateCategoryRequest request);
     void delete(int id);
-    List<Category> getByParentId(Integer parentId);
+    List<ListCategoryResponse> getByParentId(Integer parentId);
 }

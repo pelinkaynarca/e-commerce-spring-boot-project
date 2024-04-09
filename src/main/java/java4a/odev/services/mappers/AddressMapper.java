@@ -43,7 +43,8 @@ public interface AddressMapper {
     @Mapping(source = "user.firstName", target = "userFirstName")
     @Mapping(source = "user.lastName", target = "userLastName")
     UpdateAddressResponse updateResponseFromAddress(Address address);
-    // ----
+
+    //list
     @Mapping(source = "city.name", target = "cityName")
     @Mapping(source = "city.country.name", target = "countryName")
     @Mapping(source = "user.firstName", target = "userFirstName")

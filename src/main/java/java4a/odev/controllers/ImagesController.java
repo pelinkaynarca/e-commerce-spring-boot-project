@@ -11,17 +11,13 @@ import java4a.odev.services.dtos.responses.images.UpdateImageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/images")
 public class ImagesController {
     private ImageService imageService;
 
-    @GetMapping("/get-all")
-    public List<ListImageResponse> getAll(){
-        return imageService.getAll();
-    }
 
     @GetMapping("/{id}")
     public ListImageResponse getById(@PathVariable int id){

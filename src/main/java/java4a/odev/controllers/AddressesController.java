@@ -2,11 +2,13 @@ package java4a.odev.controllers;
 
 import jakarta.validation.Valid;
 
+import java4a.odev.services.abstracts.AddressService;
 import java4a.odev.services.dtos.requests.addresses.AddAddressRequest;
 import java4a.odev.services.dtos.requests.addresses.UpdateAddressRequest;
 import java4a.odev.services.dtos.responses.addresses.AddAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.ListAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.UpdateAddressResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/addresses")
 public class AddressesController {
-    private AddressesController addressService;
+    @Autowired
+    private AddressService addressService;
 
-    @GetMapping("/get-all")
-    public List<ListAddressResponse> getAll(){
-        return addressService.getAll();
+    @GetMapping("/get-by-user-id/{userId}")
+    public List<ListAddressResponse> findAllByUserId(@PathVariable int userId){
+        return addressService.findAllByUserId(userId);
     }
 
     @GetMapping("/{id}")

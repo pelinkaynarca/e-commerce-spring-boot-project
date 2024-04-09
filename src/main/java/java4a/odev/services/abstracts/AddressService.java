@@ -9,7 +9,7 @@ import java4a.odev.services.dtos.responses.addresses.UpdateAddressResponse;
 import java.util.List;
 
 public interface AddressService {
-    List<ListAddressResponse> getAll();
+    List<ListAddressResponse> findAllByUserId(int userId);
     ListAddressResponse getById(int id);
     AddAddressResponse add(AddAddressRequest request);
     UpdateAddressResponse update(UpdateAddressRequest request);

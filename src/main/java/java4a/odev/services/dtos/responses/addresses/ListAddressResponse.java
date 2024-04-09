@@ -17,9 +17,9 @@ public class ListAddressResponse {
 
 	private int postalCode;
 
-	private String city;
+	private String cityName;
 
-	private String country;
+	private String countryName;
 
 	private String userFirstName;
 

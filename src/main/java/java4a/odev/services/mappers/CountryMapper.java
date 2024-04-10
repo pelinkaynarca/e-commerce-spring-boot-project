@@ -13,9 +13,15 @@ import java.util.List;
 @Mapper
 public interface CountryMapper {
     CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
+
     Country countryFromAddRequest(AddCountryRequest request);
+
     AddCountryResponse addResponseFromCountry(Country country);
+
     UpdateCountryResponse updateCountryResponseFromCountry(Country country);
+
     List<ListCountryResponse> toListCountryResponseList(List<Country> countries);
+
     ListCountryResponse toListCountryResponse(Country country);
+
 }

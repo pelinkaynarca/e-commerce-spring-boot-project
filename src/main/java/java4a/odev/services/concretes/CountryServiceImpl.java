@@ -1,5 +1,6 @@
 package java4a.odev.services.concretes;
 
+import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.Country;
 import java4a.odev.repositories.CountryRepository;
 import java4a.odev.services.abstracts.CountryService;
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -34,6 +36,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public AddCountryResponse add(AddCountryRequest request){
+        categoryWithSameNameShouldNotExist(request.getName());
         Country country = CountryMapper.INSTANCE.countryFromAddRequest(request);
         country = countryRepository.save(country);
 
@@ -46,14 +49,20 @@ public class CountryServiceImpl implements CountryService {
                 .orElseThrow(() -> new RuntimeException("Country not found with id: " + request.getId()));
 
         country.setName(request.getName());
-
         country = countryRepository.save(country);
-
         return CountryMapper.INSTANCE.updateCountryResponseFromCountry(country);
     }
 
     @Override
     public void delete(int id) {
         countryRepository.deleteById(id);
+    }
+    private void categoryWithSameNameShouldNotExist(String name)
+    {
+        Optional<Country> categoryWithSameName = countryRepository
+                .findByNameIgnoreCase(name);
+
+        if(categoryWithSameName.isPresent())
+            throw new BusinessException("Aynı isimde bir ülke zaten var.");
     }
 }

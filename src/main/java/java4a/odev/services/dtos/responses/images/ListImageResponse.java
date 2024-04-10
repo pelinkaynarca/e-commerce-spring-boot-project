@@ -15,7 +15,6 @@ public class ListImageResponse {
 
     private String imageUrl;
 
-
-	private String productName;
+	private int productId;
 
 }

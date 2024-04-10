@@ -11,43 +11,30 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
 
 
 @Mapper
-
 public interface ImageMapper {
 
     ImageMapper INSTANCE = Mappers.getMapper(ImageMapper.class);
-    UpdateImageResponse updateImageResponseFromImage(Image image);
 
+    List<ListImageResponse> toListImageResponse(List<Image> images);
 
-    ListImageResponse toListImageResponse(Image images);
+    @Mapping(source = "product.id", target = "productId")
+    ListImageResponse listResponseFromImage(Image image);
 
-
-
-    //add
     @Mapping(target = "product.id" , source = "productId")
     Image imageFromAddRequest(AddImageRequest request);
 
     @Mapping(target = "productId" , source = "product.id")
     AddImageResponse addResponseFromImage(Image image);
 
- // update
-
     @Mapping(source = "productId" , target = "product.id")
     Image imageFromUpdateRequest(UpdateImageRequest request);
 
     @Mapping(source = "product.id" , target = "productId")
-    AddImageResponse updateResponseFromImage(Image image);
-
-
-
-    //list
-
-    @Mapping(source = "product.name", target = "productName")
-    ListImageResponse listResponseFromImage(Image image);
-
-
+    UpdateImageResponse updateResponseFromImage(Image image);
 
 }
 

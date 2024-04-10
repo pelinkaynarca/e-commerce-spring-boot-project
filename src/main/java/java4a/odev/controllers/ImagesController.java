@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 
 @RestController
@@ -21,9 +22,9 @@ public class ImagesController {
     private ImageService imageService;
 
 
-    @GetMapping("/{id}")
-    public ListImageResponse getById(@PathVariable int id){
-        return imageService.getById(id);
+    @GetMapping("/{productId}")
+    public List<ListImageResponse> getById(@PathVariable("productId") int productId){
+        return imageService.getByProductId(productId);
     }
 
     @PostMapping("/create-image")

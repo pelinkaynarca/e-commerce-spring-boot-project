@@ -8,6 +8,7 @@ import java4a.odev.services.dtos.requests.addresses.UpdateAddressRequest;
 import java4a.odev.services.dtos.responses.addresses.AddAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.ListAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.UpdateAddressResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/api/addresses")
+@AllArgsConstructor
 public class AddressesController {
-    @Autowired
+
     private AddressService addressService;
 
     @GetMapping("/get-by-user-id/{userId}")

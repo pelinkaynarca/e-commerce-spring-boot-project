@@ -8,6 +8,7 @@ import java4a.odev.services.dtos.requests.cities.UpdateCityRequest;
 import java4a.odev.services.dtos.responses.cities.AddCityResponse;
 import java4a.odev.services.dtos.responses.cities.ListCityResponse;
 import java4a.odev.services.dtos.responses.cities.UpdateCityResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cities")
+@AllArgsConstructor
 public class CitiesController {
-    @Autowired
+
     private CityService cityService;
 
     @GetMapping("/get-all")

@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Generated;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,12 +24,14 @@ public class Category {
     private int id;
     @Column(name = "name")
     private String name;
+    @Generated
+    @ColumnDefault(value = "now()")
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category category;
 }

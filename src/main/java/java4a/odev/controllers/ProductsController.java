@@ -7,6 +7,8 @@ import java4a.odev.services.dtos.requests.products.UpdateProductRequest;
 import java4a.odev.services.dtos.responses.products.AddProductResponse;
 import java4a.odev.services.dtos.responses.products.ListProductResponse;
 import java4a.odev.services.dtos.responses.products.UpdateProductResponse;
+import lombok.AllArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
+@AllArgsConstructor
 public class ProductsController {
     private ProductService productService;
 
@@ -44,7 +47,7 @@ public class ProductsController {
     }
     @GetMapping("/search-by-name")
     public List<ListProductResponse> findByName(@RequestParam String name) {
-        return productService.getByNameLikeIgnoreCase(name);
+        return productService.getByNameContainingIgnoreCase(name);
     }
 
     @GetMapping("/search-by-price-range")
@@ -57,11 +60,11 @@ public class ProductsController {
         return productService.getByCategoryId(categoryId);
     }
 
-    @GetMapping("/latest-products")
-    public List<ListProductResponse> getLatestProducts(@RequestParam int limit) {
+    @GetMapping("/newest-products")
+    public List<ListProductResponse> getNewestProducts(@RequestParam int limit) {
         return productService.getByCreatedAtDesc(limit);
     }
-
+    
     @GetMapping("/bestsellers")
     public List<ListProductResponse> getBestsellers(@RequestParam int limit) {
         return productService.getBestsellersByQuantity(limit);

@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Generated;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,6 +23,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Generated
+    @ColumnDefault("now()")
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

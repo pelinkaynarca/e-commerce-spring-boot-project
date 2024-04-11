@@ -14,9 +14,6 @@ public class AddCartItemsRequest {
     @Min(value=1, message = "Sepet Miktarı 0'dan küçük olamaz.")
     private int quantity;
 
-    @Min(value=1, message = "Sepet ID'si 0'dan küçük değer alamaz.")
-    private int cartId;
-
     @Min(value=1, message = "Ürün ID'si 0'dan küçük değer alamaz.")
     private int productId;
 

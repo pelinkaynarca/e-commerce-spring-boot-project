@@ -22,18 +22,20 @@ public class ImageServiceImpl implements ImageService {
 
     private ImageRepository imageRepository;
 
+
     @Override
     public List<ListImageResponse> getByProductId(int productId) {
-        List<Image> images = imageRepository.findByProductId(productId);
+        List<Image> image = imageRepository.findAll();
+        return ImageMapper.INSTANCE.ListResponseFromImage(image);
 
-        if (images.isEmpty()) {
-            throw new RuntimeException("Images not found for productId: " + productId);
-        }
-
-        List<ListImageResponse> listImageResponses = ImageMapper.INSTANCE.toListImageResponse(images);
-
-        return listImageResponses;
     }
+
+    @Override
+        public ListImageResponse getById(int id) {
+            Image image = imageRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Image not found with id: " + id));
+            return ImageMapper.INSTANCE.ListImageResponse(image);
+        }
 
     @Override
     public AddImageResponse add(AddImageRequest request) {
@@ -45,7 +47,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public UpdateImageResponse update(UpdateImageRequest request) {
-        imageRepository.findById(request.getId())
+        imageRepository.findById(request.getProductId())
                 .orElseThrow(() -> new RuntimeException("Country not found with id: " + request.getId()));
         Image image;
        image = ImageMapper.INSTANCE.imageFromUpdateRequest(request);

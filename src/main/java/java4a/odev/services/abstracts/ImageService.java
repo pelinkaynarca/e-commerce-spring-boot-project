@@ -11,6 +11,9 @@ import java.util.List;
 
 public interface ImageService {
     List<ListImageResponse> getByProductId(int productId);
+
+    ListImageResponse getById(int id);
+
     AddImageResponse add(AddImageRequest request);
     UpdateImageResponse update(UpdateImageRequest request);
     void delete(int id);

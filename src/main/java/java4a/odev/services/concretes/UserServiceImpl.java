@@ -22,36 +22,32 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-
-
     @Override
     public List<ListUserResponse> getAll() {
         List<User> users = userRepository.findAll();
         return UserMapper.INSTANCE.toListUserResponseList(users);
     }
-
     @Override
     public ListUserResponse getById(int id) {
         User user = userRepository.findById(id).orElseThrow(() -> new BusinessException("User not found with id: " + id));
         return UserMapper.INSTANCE.listResponseFromUser(user);
     }
-
     @Override
     public AddUserResponse add(AddUserRequest request) {
         User user = UserMapper.INSTANCE.userFromAddRequest(request);
         user = userRepository.save(user);
         return UserMapper.INSTANCE.addResponseFromUser(user);
-
     }
-
     @Override
     public UpdateUserResponse update(UpdateUserRequest request) {
-        User user = userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
+       userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
+       User user;
+       user = UserMapper.INSTANCE.userFromUpdateRequest(request);
         user = userRepository.save(user);
 
-        return UserMapper.INSTANCE.updateUserResponseFromUser(user);
+        UpdateUserResponse updateUserResponse = UserMapper.INSTANCE.updateResponseFromUser(user);
+        return updateUserResponse;
     }
-
     @Override
     public void delete(int id) {
         User user = userRepository.findById(id).orElseThrow();

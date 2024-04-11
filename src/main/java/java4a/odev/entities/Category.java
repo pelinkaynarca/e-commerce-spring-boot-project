@@ -26,7 +26,7 @@ public class Category {
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category category;
 }

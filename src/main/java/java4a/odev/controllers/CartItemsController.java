@@ -8,6 +8,8 @@ import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemsRequest;
 import java4a.odev.services.dtos.responses.cartitems.AddCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.ListCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.UpdateCartItemResponse;
+import lombok.AllArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cart-items")
+@AllArgsConstructor
 public class CartItemsController {
     private CartItemService cartItemService;
 

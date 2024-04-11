@@ -10,9 +10,11 @@ import org.springframework.data.repository.query.Param;
 import java4a.odev.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
+	Optional<Product> findByName(String name);
+	
 	Optional<Product> findByNameIgnoreCase(String name);
 
-	List<Product> findByNameLikeIgnoreCase(String name);
+	List<Product> findByNameContainingIgnoreCase(String name);
 
 	/**
 	 * Fiyat aralığına göre listeler.

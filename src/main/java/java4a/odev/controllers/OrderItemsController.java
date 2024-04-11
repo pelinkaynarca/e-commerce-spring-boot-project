@@ -1,37 +1,38 @@
 package java4a.odev.controllers;
 
-import jakarta.validation.Valid;
 import java4a.odev.services.abstracts.OrderItemService;
-import java4a.odev.services.dtos.requests.orderitems.AddOrderItemRequest;
-import java4a.odev.services.dtos.responses.orderitems.AddOrderItemResponse;
 import java4a.odev.services.dtos.responses.orderitems.ListOrderItemResponse;
-import org.springframework.http.HttpStatus;
+import lombok.AllArgsConstructor;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/api/order-items")
+@AllArgsConstructor
 public class OrderItemsController {
-    private OrderItemService orderItemService;
 
-    @GetMapping("/get-all")
-    public List<ListOrderItemResponse> getAll(){
-        return orderItemService.getAll();
-    }
+	private OrderItemService orderItemService;
 
-    @GetMapping("/{id}")
-    public ListOrderItemResponse getById(@PathVariable int id){
-        return orderItemService.getById(id);
-    }
+	@GetMapping("/get-all")
+	public List<ListOrderItemResponse> getAll() {
+		return orderItemService.getAll();
+	}
 
-    @PostMapping("/create-order-item")
-    @ResponseStatus(HttpStatus.CREATED)
-    public AddOrderItemResponse add(@RequestBody @Valid AddOrderItemRequest request) {
-        return orderItemService.add(request);
-    }
+	@GetMapping("/{id}")
+	public ListOrderItemResponse getById(@PathVariable int id) {
+		return orderItemService.getById(id);
+	}
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id) {
-        orderItemService.delete(id);
-    }
+//	@PostMapping("/create-order-item")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public AddOrderItemResponse add(@RequestBody @Valid AddOrderItemRequest request) {
+//		return orderItemService.add(request);
+//	}
+
+//	@DeleteMapping("/{id}")
+//	public void delete(@PathVariable int id) {
+//		orderItemService.delete(id);
+//	}
 }

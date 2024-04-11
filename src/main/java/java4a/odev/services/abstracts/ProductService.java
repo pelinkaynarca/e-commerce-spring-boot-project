@@ -14,7 +14,7 @@ public interface ProductService {
     AddProductResponse add(AddProductRequest request);
     UpdateProductResponse update(UpdateProductRequest request);
     void delete(int id);
-    List<ListProductResponse> getByNameLikeIgnoreCase(String name);
+    List<ListProductResponse> getByNameContainingIgnoreCase(String name);
     List<ListProductResponse> getByUnitPriceBetween(double p1, double p2);
     List<ListProductResponse> getByCategoryId(int categoryId);
     List<ListProductResponse> getByCreatedAtDesc(int limit);

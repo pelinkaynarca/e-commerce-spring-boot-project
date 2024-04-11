@@ -30,11 +30,12 @@ public interface CartItemMapper {
 	@Mapping(target = "userFirstName", source = "user.firstName")
 	@Mapping(target = "userLastName", source = "user.lastName")
 	AddCartItemResponse addResponseFromCartItem(CartItem cartItem);
-	
+
 	@Mapping(target = "product.id", source = "productId")
-	@Mapping(target = "user", ignore = true)
+	@Mapping(target = "user.id", source = "userId")
+	@Mapping(target = "id", ignore = true)
 	CartItem cartItemFromUpdateRequest(UpdateCartItemsRequest request);
-	
+
 	@Mapping(target = "productName", source = "product.name")
 	@Mapping(target = "userFirstName", source = "user.firstName")
 	@Mapping(target = "userLastName", source = "user.lastName")

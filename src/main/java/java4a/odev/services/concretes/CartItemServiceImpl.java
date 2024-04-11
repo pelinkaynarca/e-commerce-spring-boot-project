@@ -55,8 +55,11 @@ public class CartItemServiceImpl implements CartItemService {
 	@Override
 	public UpdateCartItemResponse update(UpdateCartItemsRequest request) {
 		productShouldExistAndMustBeInStock(request.getProductId(), request.getQuantity());
-		CartItem cartItem = CartItemMapper.INSTANCE.cartItemFromUpdateRequest(request);
-		CartItem savedCartItem = cartItemRepository.save(cartItem);
+		CartItem cartItemToBeSaved = CartItemMapper.INSTANCE.cartItemFromUpdateRequest(request);
+		CartItem cartItemInDB = cartItemRepository.findByUserIdAndProductId(request.getUserId(), request.getProductId())
+				.orElseThrow();
+		cartItemToBeSaved.setId(cartItemInDB.getId());
+		CartItem savedCartItem = cartItemRepository.save(cartItemToBeSaved);
 		return CartItemMapper.INSTANCE.updateResponseFromCartItem(savedCartItem);
 	}
 
@@ -88,7 +91,7 @@ public class CartItemServiceImpl implements CartItemService {
 		if (throwException)
 			throw new BusinessException(product.getName() + " isimli üründen stokta yeterli miktarda bulunmamaktadır.");
 	}
-	
+
 	private void productShouldExistAndMustBeInStock(int productId, int requestedQuantity) {
 		Product product = productRepository.findById(productId)
 				.orElseThrow(() -> new BusinessException(productId + " id'li ürün bulunamadı."));

@@ -38,7 +38,6 @@ public class ImageServiceImpl implements ImageService {
         Image image = ImageMapper.INSTANCE.imageFromAddRequest(request);
         image = imageRepository.save(image);
         return ImageMapper.INSTANCE.addResponseFromImage(image);
-
     }
 
     @Override

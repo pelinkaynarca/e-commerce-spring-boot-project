@@ -1,7 +1,10 @@
 package java4a.odev.services.concretes;
 
 import java4a.odev.core.utils.exceptions.types.BusinessException;
+import java4a.odev.entities.Role;
+import java4a.odev.entities.RoleName;
 import java4a.odev.entities.User;
+import java4a.odev.repositories.RoleRepository;
 import java4a.odev.repositories.UserRepository;
 import java4a.odev.services.abstracts.UserService;
 import java4a.odev.services.dtos.requests.users.AddUserRequest;
@@ -14,7 +17,9 @@ import java4a.odev.services.mappers.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Service
@@ -22,6 +27,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
     @Override
     public List<ListUserResponse> getAll() {
@@ -38,8 +44,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public AddUserResponse add(AddUserRequest request) {
         User user = UserMapper.INSTANCE.userFromAddRequest(request);
-        user = userRepository.save(user);
-        return UserMapper.INSTANCE.addResponseFromUser(user);
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+            Set<Role> roles = new HashSet<>();
+            Role customerRole = roleRepository.findById(RoleName.CUSTOMER.ordinal()).orElseThrow();
+            roles.add(customerRole);
+            user.setRoles(roles);
+        }
+        User savedUser = userRepository.save(user);
+        return UserMapper.INSTANCE.addResponseFromUser(savedUser);
     }
 
     @Override

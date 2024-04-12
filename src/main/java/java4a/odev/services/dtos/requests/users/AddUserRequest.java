@@ -4,10 +4,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import java4a.odev.entities.RoleName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,4 +41,6 @@ public class AddUserRequest {
     @NotBlank(message = "Boş bırakılamaz.")
     @Size(min=6, message = "Şifre en az 6 karakterden oluşmalıdır.")
     private String password;
+
+    private List<RoleName> roles;
 }

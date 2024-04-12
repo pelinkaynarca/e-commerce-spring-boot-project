@@ -2,7 +2,9 @@ package java4a.odev.services.concretes;
 
 import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.City;
+import java4a.odev.entities.Country;
 import java4a.odev.repositories.CityRepository;
+import java4a.odev.repositories.CountryRepository;
 import java4a.odev.services.abstracts.CityService;
 import java4a.odev.services.dtos.requests.cities.AddCityRequest;
 import java4a.odev.services.dtos.requests.cities.UpdateCityRequest;
@@ -14,13 +16,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CityServiceImpl implements CityService {
+public class  CityServiceImpl implements CityService {
 
     private CityRepository cityRepository;
+    private CountryRepository countryRepository;
 
     @Override
     public List<ListCityResponse> getAll() {
@@ -38,7 +42,12 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public AddCityResponse add(AddCityRequest request) {
+        cityWithSameNameShouldNotExist(request.getName());
+        Country country = countryRepository.findById(request.getCountryId())
+                .orElseThrow(() -> new BusinessException("Country not found with id: " + request.getCountryId()));
+
         City city = CityMapper.INSTANCE.cityFromAddRequest(request);
+        city.setCountry(country);
         city = cityRepository.save(city);
 
         AddCityResponse addCityResponse = CityMapper.INSTANCE.addResponseFromCity(city);
@@ -48,6 +57,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public UpdateCityResponse update(UpdateCityRequest request) {
+        cityWithSameNameShouldNotExist(request.getName());
         City city = CityMapper.INSTANCE.cityFromUpdateRequest(request);
         city = cityRepository.save(city);
 
@@ -61,4 +71,12 @@ public class CityServiceImpl implements CityService {
         City city = cityRepository.findById(id).orElseThrow();
         cityRepository.delete(city);
     }
+
+    private void cityWithSameNameShouldNotExist(String cityName) {
+        Optional<City> cityWithSameName = cityRepository.findByNameIgnoreCase(cityName);
+
+        if(cityWithSameName.isPresent())
+            throw new BusinessException("Aynı isimde bir şehir zaten var.");
+    }
+
 }

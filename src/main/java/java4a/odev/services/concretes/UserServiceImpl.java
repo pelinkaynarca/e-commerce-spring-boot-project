@@ -44,9 +44,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UpdateUserResponse update(UpdateUserRequest request) {
-       userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
-       User user;
-       user = UserMapper.INSTANCE.userFromUpdateRequest(request);
+        userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
+        User user;
+        user = UserMapper.INSTANCE.userFromUpdateRequest(request);
         user = userRepository.save(user);
 
         UpdateUserResponse updateUserResponse = UserMapper.INSTANCE.updateResponseFromUser(user);

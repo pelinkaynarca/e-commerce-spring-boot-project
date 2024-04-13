@@ -76,8 +76,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void delete(int id) {
-		User user = userRepository.findById(id).orElseThrow();
-		userRepository.delete(user);
+		userRepository.deleteById(id);
 	}
 
 	private void userWithSameEmailShouldNotExist(String email) {

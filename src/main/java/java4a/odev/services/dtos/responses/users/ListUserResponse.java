@@ -1,5 +1,7 @@
 package java4a.odev.services.dtos.responses.users;
 
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +25,5 @@ public class ListUserResponse {
 
 	private String phone;
 
+	private Set<String> roles;
 }

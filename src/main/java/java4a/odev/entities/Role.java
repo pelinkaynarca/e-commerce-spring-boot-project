@@ -14,9 +14,8 @@ import lombok.Setter;
 @Table(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private short id;
 
     @Column(nullable = false, unique = true)
     @Enumerated(EnumType.STRING)

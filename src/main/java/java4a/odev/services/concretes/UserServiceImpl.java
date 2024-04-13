@@ -17,6 +17,7 @@ import java4a.odev.services.mappers.UserMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +33,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<ListUserResponse> getAll() {
 		List<User> users = userRepository.findAll();
-		return UserMapper.INSTANCE.toListUserResponseList(users);
+		List<ListUserResponse> userResponseList = new ArrayList<ListUserResponse>();
+		for (User user : users) {
+			userResponseList.add(UserMapper.INSTANCE.listResponseFromUser(user));
+		}
+		return userResponseList;
 	}
 
 	@Override
@@ -49,7 +54,8 @@ public class UserServiceImpl implements UserService {
 		User user = UserMapper.INSTANCE.userFromAddRequest(request);
 		if (user.getRoles() == null || user.getRoles().isEmpty()) {
 			Set<Role> roles = new HashSet<>();
-			Role customerRole = roleRepository.findById(RoleName.CUSTOMER.ordinal()).orElseThrow();
+			Role customerRole = roleRepository.findById(RoleName.CUSTOMER.getRoleId())
+					.orElseThrow(() -> new BusinessException("Veritabanında rol tanımlanmamış."));
 			roles.add(customerRole);
 			user.setRoles(roles);
 		}
@@ -61,11 +67,10 @@ public class UserServiceImpl implements UserService {
 	public UpdateUserResponse update(UpdateUserRequest request) {
 		userRepository.findById(request.getId())
 				.orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
-		User user;
-		user = UserMapper.INSTANCE.userFromUpdateRequest(request);
-		user = userRepository.save(user);
+		User user = UserMapper.INSTANCE.userFromUpdateRequest(request);
+		User savedUser = userRepository.save(user);
 
-		UpdateUserResponse updateUserResponse = UserMapper.INSTANCE.updateResponseFromUser(user);
+		UpdateUserResponse updateUserResponse = UserMapper.INSTANCE.updateResponseFromUser(savedUser);
 		return updateUserResponse;
 	}
 
@@ -78,14 +83,14 @@ public class UserServiceImpl implements UserService {
 	private void userWithSameEmailShouldNotExist(String email) {
 		Optional<User> user = userRepository.findByEmailIgnoreCase(email);
 		user.ifPresent((userWithSameEmail) -> {
-			throw new BusinessException(email + " epostası ile daha önce kayıt olunmuş.");
+			throw new BusinessException(email + " eposta adresi ile daha önce kayıt olunmuş.");
 		});
 	}
-	
+
 	private void userWithSameUsernameShouldNotExist(String username) {
 		Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
-		user.ifPresent((userWithSameEmail) -> {
-			throw new BusinessException(username + " epostası ile daha önce kayıt olunmuş.");
+		user.ifPresent((userWithSameUsername) -> {
+			throw new BusinessException(username + " kullanıcı adı ile daha önce kayıt olunmuş.");
 		});
 	}
 }

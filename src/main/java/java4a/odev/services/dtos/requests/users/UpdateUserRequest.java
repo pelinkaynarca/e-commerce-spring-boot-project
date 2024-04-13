@@ -1,6 +1,9 @@
 package java4a.odev.services.dtos.requests.users;
 
+import java.util.List;
+
 import jakarta.validation.constraints.*;
+import java4a.odev.entities.RoleName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +41,6 @@ public class UpdateUserRequest {
     @NotBlank(message = "Boş bırakılamaz.")
     @Size(min=6, message = "Şifre en az 6 karakterden oluşmalıdır.")
     private String password;
+    
+    private List<RoleName> roles;
 }

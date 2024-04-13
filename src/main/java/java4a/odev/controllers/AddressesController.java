@@ -9,7 +9,6 @@ import java4a.odev.services.dtos.responses.addresses.AddAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.ListAddressResponse;
 import java4a.odev.services.dtos.responses.addresses.UpdateAddressResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

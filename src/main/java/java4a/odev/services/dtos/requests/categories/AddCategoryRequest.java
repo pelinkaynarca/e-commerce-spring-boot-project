@@ -15,6 +15,8 @@ public class AddCategoryRequest {
     @Size(min=2, max=50, message = "Kategori adı 2 ile 50 karakter arasında olmalıdır.")
     private String name;
 
-    @Min(value=1, message = "parentId 0'dan küçük değer alamaz.")
+
+    @PositiveOrZero(message = "parentId pozitif veya sıfır olmalıdır.")
     private Integer parentId;
+
 }

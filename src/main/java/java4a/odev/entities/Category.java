@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,16 +21,20 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
     private String name;
-    @Generated
-    @ColumnDefault(value = "now()")
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private Category category;
+    private Category parent;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Category> children = new ArrayList<>();
 }

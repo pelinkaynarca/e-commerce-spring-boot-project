@@ -1,6 +1,5 @@
 package java4a.odev.services.abstracts;
 
-import java4a.odev.entities.Category;
 import java4a.odev.services.dtos.requests.categories.AddCategoryRequest;
 import java4a.odev.services.dtos.requests.categories.UpdateCategoryRequest;
 import java4a.odev.services.dtos.responses.categories.AddCategoryResponse;
@@ -15,5 +14,4 @@ public interface CategoryService {
     AddCategoryResponse add(AddCategoryRequest request);
     UpdateCategoryResponse update(UpdateCategoryRequest request);
     void delete(int id);
-    List<ListCategoryResponse> getByParentId(Integer parentId);
 }

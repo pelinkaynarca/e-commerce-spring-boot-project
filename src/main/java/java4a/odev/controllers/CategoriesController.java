@@ -8,6 +8,7 @@ import java4a.odev.services.dtos.requests.categories.UpdateCategoryRequest;
 import java4a.odev.services.dtos.responses.categories.AddCategoryResponse;
 import java4a.odev.services.dtos.responses.categories.ListCategoryResponse;
 import java4a.odev.services.dtos.responses.categories.UpdateCategoryResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
+@AllArgsConstructor
 public class CategoriesController {
     private CategoryService categoryService;
 
@@ -44,8 +46,4 @@ public class CategoriesController {
         categoryService.delete(id);
     }
 
-    @GetMapping("/get-parent")
-    public List<ListCategoryResponse> getByParentId(@RequestParam Integer parentId) {
-        return categoryService.getByParentId(parentId);
-    }
 }

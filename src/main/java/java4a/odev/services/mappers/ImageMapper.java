@@ -21,13 +21,18 @@ public interface ImageMapper {
 
     @Mapping(target = "product.id" , source = "productId")
     Image imageFromAddRequest(AddImageRequest request);
+
     @Mapping(target = "productId" , source = "product.id")
     AddImageResponse addResponseFromImage(Image image);
+
     @Mapping(source = "productId" , target = "product.id")
     Image imageFromUpdateRequest(UpdateImageRequest request);
+
     @Mapping(source = "product.id" , target = "productId")
     UpdateImageResponse updateResponseFromImage(Image image);
+
     List<ListImageResponse> ListResponseFromImage(List<Image> image);
+
     @Mapping(source = "product.id", target = "productId")
     ListImageResponse ListImageResponse(Image image);
 }

@@ -30,7 +30,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ListImageResponse getById(int id) {
-        Image image = imageRepository.findById(id).orElseThrow(() -> new BusinessException("Image not found with id: " + id));
+        Image image = imageRepository.findById(id).orElseThrow(() -> new BusinessException("ID'sine sahip bir görsel bulunamadı. " + id));
         return ImageMapper.INSTANCE.ListImageResponse(image);
     }
 
@@ -43,7 +43,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public UpdateImageResponse update(UpdateImageRequest request) {
-        imageRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("Image not found with id: " + request.getId()));
+        imageRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("ID'sine sahip bir görsel bulunamadı. " + request.getId()));
         Image image;
         image = ImageMapper.INSTANCE.imageFromUpdateRequest(request);
         image = imageRepository.save(image);

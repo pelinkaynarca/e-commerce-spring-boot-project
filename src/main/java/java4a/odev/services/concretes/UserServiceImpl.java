@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ListUserResponse getById(int id) {
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new BusinessException("User not found with id: " + id));
+				.orElseThrow(() -> new BusinessException("ID'sine sahip bir kullanıcı bulunamadı. " + id));
 		return UserMapper.INSTANCE.listResponseFromUser(user);
 	}
 
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UpdateUserResponse update(UpdateUserRequest request) {
 		userRepository.findById(request.getId())
-				.orElseThrow(() -> new RuntimeException("User not found with id: " + request.getId()));
+				.orElseThrow(() -> new RuntimeException("ID'sine sahip bir kullanıcı bulunamadı. " + request.getId()));
 		User user = UserMapper.INSTANCE.userFromUpdateRequest(request);
 		User savedUser = userRepository.save(user);
 

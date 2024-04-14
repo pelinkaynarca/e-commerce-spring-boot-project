@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -113,7 +114,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private void productWithSameNameShouldNotExist(String name) {
-		productRepository.findByNameIgnoreCase(name)
-				.orElseThrow(() -> new BusinessException("Aynı isimde bir ürün zaten var"));
+		Optional<Product> productWithSameName = productRepository.findByNameIgnoreCase(name);
+
+		if (productWithSameName.isPresent())
+			throw new BusinessException("Aynı isimde bir ürün zaten var");
 	}
 }

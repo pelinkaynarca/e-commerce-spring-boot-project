@@ -2,6 +2,7 @@ package java4a.odev.services.concretes;
 
 import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.Address;
+import java4a.odev.entities.Country;
 import java4a.odev.repositories.AddressRepository;
 import java4a.odev.services.abstracts.AddressService;
 import java4a.odev.services.dtos.requests.addresses.AddAddressRequest;
@@ -24,7 +25,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public ListAddressResponse getById(int id) {
-        Address address = addressRepository.findById(id).orElseThrow(() -> new BusinessException("Address not found with id: " + id));
+        Address address = getAddressById(id);
         return AddressMapper.INSTANCE.listResponseFromAddress(address);
     }
 
@@ -58,8 +59,11 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void delete(int id) {
-            Address address = addressRepository.findById(id).orElseThrow();
-            addressRepository.delete(address);
+        Address address = getAddressById(id);
+        addressRepository.delete(address);
         }
 
+    private Address getAddressById(int id) {
+        return addressRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir adres bulunamadı."));
     }
+}

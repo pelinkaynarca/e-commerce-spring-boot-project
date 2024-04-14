@@ -36,7 +36,7 @@ public class  CityServiceImpl implements CityService {
 
     @Override
     public ListCityResponse getById(int id) {
-        City city = cityRepository.findById(id).orElseThrow(() -> new BusinessException("City not found with id: " + id));
+        City city = getCityById(id);
         return CityMapper.INSTANCE.listResponseFromCity(city);
     }
 
@@ -68,7 +68,7 @@ public class  CityServiceImpl implements CityService {
 
     @Override
     public void delete(int id) {
-        City city = cityRepository.findById(id).orElseThrow();
+        City city = getCityById(id);
         cityRepository.delete(city);
     }
 
@@ -79,4 +79,7 @@ public class  CityServiceImpl implements CityService {
             throw new BusinessException("Aynı isimde bir şehir zaten var.");
     }
 
+    private City getCityById(int id) {
+        return cityRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir şehir bulunamadı."));
+    }
 }

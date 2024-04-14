@@ -24,7 +24,6 @@ public interface CityMapper {
     //source => entity
     //target => response
     @Mapping(source = "country.id", target = "countryId")
-    //TODO: response body'de name null dönüyor
     @Mapping(source = "country.name", target = "countryName")
     AddCityResponse addResponseFromCity(City city);
 

@@ -22,6 +22,8 @@ public class ListProductResponse {
 	private int stockQuantity;
 
 	private LocalDateTime createdAt;
+	
+	private LocalDateTime modifiedAt;
 
 	private String description;
 

@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddOrderRequest {
-    @Min(value=1, message = "Kullanıcı ID'si 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Geçerli bir kullanıcı ID'si belirtilmelidir.")
     private int userId;
 }

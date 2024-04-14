@@ -1,5 +1,6 @@
 package java4a.odev.services.concretes;
 
+import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.Image;
 import java4a.odev.repositories.ImageRepository;
 import java4a.odev.services.abstracts.ImageService;
@@ -29,7 +30,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ListImageResponse getById(int id) {
-        Image image = imageRepository.findById(id).orElseThrow(() -> new RuntimeException("Image not found with id: " + id));
+        Image image = imageRepository.findById(id).orElseThrow(() -> new BusinessException("Image not found with id: " + id));
         return ImageMapper.INSTANCE.ListImageResponse(image);
     }
 
@@ -42,7 +43,7 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public UpdateImageResponse update(UpdateImageRequest request) {
-        imageRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Image not found with id: " + request.getId()));
+        imageRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("Image not found with id: " + request.getId()));
         Image image;
         image = ImageMapper.INSTANCE.imageFromUpdateRequest(request);
         image = imageRepository.save(image);

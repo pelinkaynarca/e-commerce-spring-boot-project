@@ -13,19 +13,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateAddressRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
-    @NotBlank(message = "Ürün adı boş olamaz.")
-    @Size(min=2, max=100, message = "Adres 2 ile 100 karakter arasında olmalıdır.")
+    @NotBlank(message = "Adres açıklaması boş olamaz.")
+    @Size(min = 2, max = 100, message = "Adres açıklaması 2 ile 100 karakter arasında olmalıdır.")
     private String description;
 
-    @Min(value=1, message = "Posta kodu 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Posta kodu 1'den küçük olamaz.")
     private int postalCode;
 
-    @Min(value=1, message = "Şehir ID'si 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir şehir ID'si belirtilmelidir.")
     private int cityId;
 
-    @Min(value=1, message = "Kullanıcı ID'si 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir kullanıcı ID'si belirtilmelidir.")
     private int userId;
 }

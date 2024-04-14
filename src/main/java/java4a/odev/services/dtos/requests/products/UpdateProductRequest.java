@@ -11,11 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateProductRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
     @NotBlank(message = "Ürün adı boş olamaz.")
-    @Size(min=2, max=100, message = "Ürün adı 2 ile 100 karakter arasında olmalıdır.")
+    @Size(min = 2, max = 100, message = "Ürün adı 2 ile 100 karakter arasında olmalıdır.")
     private String name;
 
     @Positive(message = "Fiyat değeri sıfırdan büyük olmalıdır.")
@@ -23,9 +23,9 @@ public class UpdateProductRequest {
 
     private String description;
 
-    @Min(value=1, message = "Ürün miktarı sıfırdan büyük olmalıdır.")
+    @Min(value = 1, message = "Ürün miktarı 1'den küçük olamaz.")
     private int stockQuantity;
 
-    @Min(value=1, message = "Kategori ID'si 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir kategori ID'si belirtilmelidir.")
     private int categoryId;
 }

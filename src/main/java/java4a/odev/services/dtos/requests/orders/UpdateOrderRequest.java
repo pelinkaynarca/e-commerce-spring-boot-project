@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateOrderRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
-    @Min(value=1, message = "Kullanıcı Id'si 0'dan küçük değer alamaz.")
+    @Min(value=1, message = "Geçerli bir kullanıcı ID'si belirtilmelidir.")
     private int userId;
 }

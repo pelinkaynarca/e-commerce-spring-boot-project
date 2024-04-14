@@ -24,45 +24,48 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<ListCountryResponse> getAll() {
         List<Country> countries = countryRepository.findAll();
-        return CountryMapper.INSTANCE.toListCountryResponseList(countries);
+        return CountryMapper.INSTANCE.toListResponseListFromCategoryList(countries);
     }
 
     @Override
     public ListCountryResponse getById(int id) {
-        Country country = countryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Country not found with id: " + id));
+        Country country = getCountryById(id);
         return CountryMapper.INSTANCE.toListCountryResponse(country);
     }
 
     @Override
     public AddCountryResponse add(AddCountryRequest request){
-        categoryWithSameNameShouldNotExist(request.getName());
+        countryWithSameNameShouldNotExist(request.getName());
         Country country = CountryMapper.INSTANCE.countryFromAddRequest(request);
         country = countryRepository.save(country);
 
-        return CountryMapper.INSTANCE.addResponseFromCountry(country);
+        return CountryMapper.INSTANCE.addResponseCountry(country);
     }
 
     @Override
     public UpdateCountryResponse update(UpdateCountryRequest request) {
-        Country country = countryRepository.findById(request.getId())
-                .orElseThrow(() -> new RuntimeException("Country not found with id: " + request.getId()));
+        getCountryById(request.getId());
+        Country updatedCountry = CountryMapper.INSTANCE.countryFromUpdateRequest(request);
 
-        country.setName(request.getName());
-        country = countryRepository.save(country);
-        return CountryMapper.INSTANCE.updateCountryResponseFromCountry(country);
+        updatedCountry = countryRepository.save(updatedCountry);
+        countryWithSameNameShouldNotExist(request.getName());
+        return CountryMapper.INSTANCE.updateResponseFromCountry(updatedCountry);
     }
 
     @Override
     public void delete(int id) {
-        countryRepository.deleteById(id);
+       Country country =  getCountryById(id);
+       countryRepository.delete(country);
     }
-    private void categoryWithSameNameShouldNotExist(String name)
-    {
-        Optional<Country> categoryWithSameName = countryRepository
-                .findByNameIgnoreCase(name);
 
-        if(categoryWithSameName.isPresent())
-            throw new BusinessException("Aynı isimde bir ülke zaten var.");
+    private Country getCountryById(int id) {
+        return countryRepository.findById(id)
+                .orElseThrow(() -> new BusinessException("ID'si " + id + " olan ülke bulunamadı."));
     }
+    private void countryWithSameNameShouldNotExist(String name) {
+       Optional<Country> countryWithSameName =  countryRepository.findByNameIgnoreCase(name);
+               if(countryWithSameName.isPresent())
+                throw new BusinessException("Aynı isimde bir ülke zaten var");
+    }
+
 }

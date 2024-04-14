@@ -13,6 +13,8 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
 	@Query("SELECT c FROM Category c WHERE c.parent IS NULL")
 	List<Category> findRootCategories();
 
+	Optional<Category>  findByNameIgnoreCase(String name);
+
 	Optional<Category> findById(int id);
 
 }

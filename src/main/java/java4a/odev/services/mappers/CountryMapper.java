@@ -2,10 +2,12 @@ package java4a.odev.services.mappers;
 
 import java4a.odev.entities.Country;
 import java4a.odev.services.dtos.requests.countries.AddCountryRequest;
+import java4a.odev.services.dtos.requests.countries.UpdateCountryRequest;
 import java4a.odev.services.dtos.responses.countries.AddCountryResponse;
 import java4a.odev.services.dtos.responses.countries.ListCountryResponse;
 import java4a.odev.services.dtos.responses.countries.UpdateCountryResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -14,14 +16,21 @@ import java.util.List;
 public interface CountryMapper {
     CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
 
+    ListCountryResponse toListCountryResponse(Country country);
+
+    List<ListCountryResponse> toListResponseListFromCategoryList(List<Country> countries);
+
     Country countryFromAddRequest(AddCountryRequest request);
 
-    AddCountryResponse addResponseFromCountry(Country country);
+    AddCountryResponse addResponseCountry(Country country);
 
-    UpdateCountryResponse updateCountryResponseFromCountry(Country country);
+    @Mapping(target = "id", source = "request.id")
+    @Mapping(target = "name", source = "request.name")
+    Country countryFromUpdateRequest(UpdateCountryRequest request);
 
-    List<ListCountryResponse> toListCountryResponseList(List<Country> countries);
+    @Mapping(source = "country.id", target = "id")
+    @Mapping(source = "country.name", target = "name")
+    UpdateCountryResponse updateResponseFromCountry(Country country);
 
-    ListCountryResponse toListCountryResponse(Country country);
 
 }

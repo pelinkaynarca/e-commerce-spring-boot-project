@@ -17,8 +17,10 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "postal_code")
     private int postalCode;
 

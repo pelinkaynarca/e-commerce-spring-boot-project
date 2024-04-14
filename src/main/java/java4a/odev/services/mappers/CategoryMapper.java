@@ -19,26 +19,26 @@ public interface CategoryMapper {
 
     @Mapping(target = "parentId", source = "category.parent.id")
     @Mapping(source = "category.modifiedAt", target = "modifiedAt")
-    ListCategoryResponse mapToCategoryResponse(Category category);
+    ListCategoryResponse listResponseFromCategory(Category category);
 
-    List<ListCategoryResponse> mapListToCategoryResponseList(List<Category> categories);
+    List<ListCategoryResponse> toListResponseListFromCategoryList(List<Category> categories);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "request.name")
     @Mapping(target = "parent", source = "parentCategory")
-    Category addCategoryRequestToCategory(AddCategoryRequest request, Category parentCategory);
+    Category categoryFromAddRequest(AddCategoryRequest request, Category parentCategory);
 
     @Mapping(target = "parentId", source = "parent.id")
-    AddCategoryResponse categoryToAddCategoryResponse(Category category);
+    AddCategoryResponse addResponseCategory(Category category);
 
     @Mapping(target = "id", source = "request.id")
     @Mapping(target = "name", source = "request.name")
     @Mapping(target = "parent.id", source = "request.parentId")
-    Category mapUpdateCategoryRequestToCategory(UpdateCategoryRequest request, Category existingCategory);
+    Category categoryFromUpdateRequest(UpdateCategoryRequest request, Category existingCategory);
 
     @Mapping(source = "category.id", target = "id")
     @Mapping(source = "category.name", target = "name")
     @Mapping(source = "category.parent.id", target = "parentId")
-    UpdateCategoryResponse mapCategoryToUpdateCategoryResponse(Category category);
+    UpdateCategoryResponse updateResposneFromCategory(Category category);
 }
 

@@ -11,14 +11,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCategoryRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
-    @NotBlank(message = "Ürün adı boş olamaz.")
-    @Size(min=2, max=50, message = "Kategori adı 2 ile 50 karakter arasında olmalıdır.")
+    @NotBlank(message = "Kategori adı boş olamaz.")
+    @Size(min = 2, max = 50, message = "Kategori adı 2 ile 50 karakter arasında olmalıdır.")
     private String name;
 
-
-    @Min(value=1, message = "parentId 0'dan küçük değer alamaz.")
+    @PositiveOrZero(message = "Üst kategori ID'si pozitif veya sıfır olmalıdır.")
     private Integer parentId;
 }

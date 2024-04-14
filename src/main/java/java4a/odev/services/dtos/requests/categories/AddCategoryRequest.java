@@ -11,12 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddCategoryRequest {
-    @NotBlank(message = "Ürün adı boş olamaz.")
-    @Size(min=2, max=50, message = "Kategori adı 2 ile 50 karakter arasında olmalıdır.")
+    @NotBlank(message = "Kategori adı boş olamaz.")
+    @Size(min = 2, max = 50, message = "Kategori adı 2 ile 50 karakter arasında olmalıdır.")
     private String name;
 
-
-    @PositiveOrZero(message = "parentId pozitif veya sıfır olmalıdır.")
+    @PositiveOrZero(message = "Üst kategori ID'si pozitif veya sıfır olmalıdır.")
     private Integer parentId;
-
 }

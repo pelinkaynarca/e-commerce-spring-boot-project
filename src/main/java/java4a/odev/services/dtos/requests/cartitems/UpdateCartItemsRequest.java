@@ -11,13 +11,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCartItemsRequest {
-    @Min(value=1, message = "Lütfen geçerli bir kullanıcı id'si girin.")
-    private int userId;
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
+    private int id;
 
-    @Min(value=1, message = "Sepet Miktarı 0'dan küçük olamaz.")
+    @Min(value = 1, message = "Sepet miktarı 1'den küçük olamaz.")
     private int quantity;
 
-    @Min(value=1, message = "productId 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir ürün ID'si belirtilmelidir.")
     private int productId;
+
+    @Min(value = 1, message = "Geçerli bir kullanıcı ID'si belirtilmelidir.")
+    private int userId;
 
 }

@@ -1,6 +1,5 @@
 package java4a.odev.services.dtos.responses.categories;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +20,8 @@ public class ListCategoryResponse {
 
 	private int parentId;
 
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime createdAt;
 
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime modifiedAt;
 
 	private List<ListCategoryResponse> children;

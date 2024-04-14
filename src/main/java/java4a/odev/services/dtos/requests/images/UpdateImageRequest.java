@@ -12,12 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateImageRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
-    @NotBlank(message = "Ürün fotoğrafının url kısmı boş olamaz.")
+    @NotBlank(message = "Ürün fotoğrafı URL'si boş olamaz.")
     private String imageUrl;
 
-    @Min(value=1, message = "Ürün ID'si 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir ürün ID'si belirtilmelidir.")
     private int productId;
 }

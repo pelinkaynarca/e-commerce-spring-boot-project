@@ -12,9 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddImageRequest {
-    @NotBlank(message = "Ürün fotoğrafının url kısmı boş olamaz.")
+    @NotBlank(message = "Ürün fotoğrafı URL'si boş olamaz.")
     private String imageUrl;
 
-    @Min(value=1, message = "Ürün ID'si 0'dan küçük değer alamaz.")
+    @Min(value = 1, message = "Geçerli bir ürün ID'si belirtilmelidir.")
     private int productId;
 }

@@ -13,10 +13,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCountryRequest {
-    @Min(value=1, message = "Lütfen geçerli bir ID numarası girin.")
+    @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 
-    @NotBlank(message = "Ülke adı boş olamaz.")
+    @NotBlank(message = "Ülke adı boş bırakılamaz.")
     @Size(min=2, max=50, message = "Ülke adı 2 ile 50 karakter arasında olmalıdır.")
     private String name;
 }

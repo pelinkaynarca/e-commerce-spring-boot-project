@@ -17,29 +17,29 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddUserRequest {
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Size(min=2, max=50, message = "İsim 2 ile 100 karakter arasında olmalıdır.")
+    @NotBlank(message = "İsim boş bırakılamaz.")
+    @Size(min = 2, max = 50, message = "İsim 2 ile 50 karakter arasında olmalıdır.")
     private String firstName;
 
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Size(min=2, max=100, message = "Soyisim 2 ile 100 karakter arasında olmalıdır.")
+    @NotBlank(message = "Soyisim boş bırakılamaz.")
+    @Size(min = 2, max = 100, message = "Soyisim 2 ile 100 karakter arasında olmalıdır.")
     private String lastName;
 
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Size(min=2, max=100, message = "Kullanıcı adı 2 ile 100 karakter arasında olmalıdır.")
+    @NotBlank(message = "Kullanıcı adı boş bırakılamaz.")
+    @Size(min = 2, max = 100, message = "Kullanıcı adı 2 ile 100 karakter arasında olmalıdır.")
     private String username;
 
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Email(message = "Geçersiz email formatı. Lütfen doğru bir email giriniz.")
-    @Size(min=6, max=100, message = "E-posta 2 ile 100 karakter arasında olmalıdır.")
+    @NotBlank(message = "E-posta boş bırakılamaz.")
+    @Email(message = "Geçersiz e-posta formatı. Lütfen doğru bir e-posta giriniz.")
+    @Size(min = 6, max = 100, message = "E-posta 6 ile 100 karakter arasında olmalıdır.")
     private String email;
 
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Pattern(regexp="(^$|[0-9]{10})")
+    @NotBlank(message = "Telefon numarası boş bırakılamaz.")
+    @Pattern(regexp = "^$|[0-9]{10}", message = "Geçersiz telefon numarası formatı. Lütfen 10 haneli bir numara giriniz.")
     private String phone;
 
-    @NotBlank(message = "Boş bırakılamaz.")
-    @Size(min=6, message = "Şifre en az 6 karakterden oluşmalıdır.")
+    @NotBlank(message = "Şifre boş bırakılamaz.")
+    @Size(min = 6, message = "Şifre en az 6 karakterden oluşmalıdır.")
     private String password;
 
     private List<RoleName> roles;

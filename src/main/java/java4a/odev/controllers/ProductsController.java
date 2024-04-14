@@ -45,6 +45,7 @@ public class ProductsController {
     public void delete(@PathVariable int id) {
         productService.delete(id);
     }
+
     @GetMapping("/search-by-name")
     public List<ListProductResponse> findByName(@RequestParam String name) {
         return productService.getByNameContainingIgnoreCase(name);

@@ -25,6 +25,7 @@ public interface AddressMapper {
     //source => entity
     //target => response
     @Mapping(source = "city.name", target = "cityName")
+    @Mapping(source = "address.city.country.name", target = "countryName")
     @Mapping(source = "user.firstName", target = "userFirstName")
     @Mapping(source = "user.lastName", target = "userLastName")
     AddAddressResponse addResponseFromAddress(Address address);

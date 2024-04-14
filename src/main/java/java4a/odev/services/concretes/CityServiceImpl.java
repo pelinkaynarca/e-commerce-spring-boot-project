@@ -43,9 +43,7 @@ public class  CityServiceImpl implements CityService {
     @Override
     public AddCityResponse add(AddCityRequest request) {
         cityWithSameNameShouldNotExist(request.getName());
-        Country country = countryRepository.findById(request.getCountryId())
-                .orElseThrow(() -> new BusinessException("Country not found with id: " + request.getCountryId()));
-
+        Country country = getCountryById(request.getCountryId());
         City city = CityMapper.INSTANCE.cityFromAddRequest(request);
         city.setCountry(country);
         city = cityRepository.save(city);
@@ -81,5 +79,9 @@ public class  CityServiceImpl implements CityService {
 
     private City getCityById(int id) {
         return cityRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir şehir bulunamadı."));
+    }
+
+    private Country getCountryById(int id) {
+        return countryRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir ülke bulunamadı."));
     }
 }

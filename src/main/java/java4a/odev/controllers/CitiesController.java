@@ -9,7 +9,6 @@ import java4a.odev.services.dtos.responses.cities.AddCityResponse;
 import java4a.odev.services.dtos.responses.cities.ListCityResponse;
 import java4a.odev.services.dtos.responses.cities.UpdateCityResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

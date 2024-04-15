@@ -24,15 +24,17 @@ public class ImageServiceImpl implements ImageService {
     private ImageRepository imageRepository;
 
     @Override
-    public List<ListImageResponse> getByProductId(int productId) {
-        List<Image> images = imageRepository.findAll();
-        return ImageMapper.INSTANCE.ListResponseFromImage(images);
+    public List<ListImageResponse> getByProductId(int productId)
+    {
+        productShouldExist(productId);
+        List<Image> images = imageRepository.findByProductId(productId);
+        return ImageMapper.INSTANCE.listResponseFromImage(images);
     }
 
     @Override
     public ListImageResponse getById(int id) {
-        Image image = imageRepository.findById(id).orElseThrow(() -> new BusinessException("ID'sine sahip bir görsel bulunamadı. " + id));
-        return ImageMapper.INSTANCE.ListImageResponse(image);
+        Image image = getImageById(id);
+        return ImageMapper.INSTANCE.listImageResponse(image);
     }
 
     @Override
@@ -43,19 +45,23 @@ public class ImageServiceImpl implements ImageService {
     }
     @Override
     public UpdateImageResponse update(UpdateImageRequest request) {
-        imageRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("ID'sine sahip bir görsel bulunamadı. " + request.getId()));
-        Image image;
-        image = ImageMapper.INSTANCE.imageFromUpdateRequest(request);
-        image = imageRepository.save(image);
+        getImageById(request.getId());
+        Image updatedImage = ImageMapper.INSTANCE.imageFromUpdateRequest(request);
+        updatedImage = imageRepository.save(updatedImage);
 
-        UpdateImageResponse updateImageResponse = ImageMapper.INSTANCE.updateResponseFromImage(image);
-        return updateImageResponse;
+        return ImageMapper.INSTANCE.updateResponseFromImage(updatedImage);
     }
 
     @Override
     public void delete(int id) {
+        imageRepository.deleteById(id);
+    }
 
-        Image image = imageRepository.findById(id).orElseThrow();
-        imageRepository.delete(image);
+    private Image getImageById(int id) {
+        return imageRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir görsel bulunamadı."));
+    }
+
+    private Image productShouldExist(int productId) {
+        return imageRepository.findById(productId).orElseThrow(() -> new BusinessException(productId + "ID'sine sahip bir ürün bulunamadı."));
     }
 }

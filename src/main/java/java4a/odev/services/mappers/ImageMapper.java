@@ -25,15 +25,15 @@ public interface ImageMapper {
     @Mapping(target = "productId" , source = "product.id")
     AddImageResponse addResponseFromImage(Image image);
 
-    @Mapping(source = "productId" , target = "product.id")
+    @Mapping(target = "product.id" , source = "productId")
     Image imageFromUpdateRequest(UpdateImageRequest request);
 
-    @Mapping(source = "product.id" , target = "productId")
+    @Mapping(target = "productId" , source = "product.id")
     UpdateImageResponse updateResponseFromImage(Image image);
 
-    List<ListImageResponse> ListResponseFromImage(List<Image> image);
+    List<ListImageResponse> listResponseFromImage(List<Image> image);
 
-    @Mapping(source = "product.id", target = "productId")
-    ListImageResponse ListImageResponse(Image image);
+    @Mapping(target = "productId", source = "product.id")
+    ListImageResponse listImageResponse(Image image);
 }
 

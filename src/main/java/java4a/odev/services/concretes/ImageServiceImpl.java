@@ -3,6 +3,7 @@ package java4a.odev.services.concretes;
 import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.Image;
 import java4a.odev.repositories.ImageRepository;
+import java4a.odev.repositories.ProductRepository;
 import java4a.odev.services.abstracts.ImageService;
 import java4a.odev.services.dtos.requests.images.AddImageRequest;
 import java4a.odev.services.dtos.requests.images.UpdateImageRequest;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ImageServiceImpl implements ImageService {
 
     private ImageRepository imageRepository;
+    private ProductRepository productRepository;
 
     @Override
     public List<ListImageResponse> getByProductId(int productId)
@@ -62,6 +64,6 @@ public class ImageServiceImpl implements ImageService {
     }
 
     private void productShouldExist(int productId) {
-        imageRepository.findById(productId).orElseThrow(() -> new BusinessException(productId + "ID'sine sahip bir ürün bulunamadı."));
+        productRepository.findById(productId).orElseThrow(() -> new BusinessException(productId + "ID'sine sahip bir ürün bulunamadı."));
     }
 }

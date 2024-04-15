@@ -1,7 +1,9 @@
 package java4a.odev.services.concretes;
 
 import java4a.odev.core.utils.exceptions.types.BusinessException;
+import java4a.odev.entities.Category;
 import java4a.odev.entities.Product;
+import java4a.odev.repositories.CategoryRepository;
 import java4a.odev.repositories.ProductRepository;
 import java4a.odev.services.abstracts.ProductService;
 import java4a.odev.services.dtos.requests.products.AddProductRequest;
@@ -23,6 +25,7 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
 	private ProductRepository productRepository;
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public List<ListProductResponse> getAll() {
@@ -85,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ListProductResponse> getByCategoryId(int categoryId) {
-		List<Product> products = productRepository.findByCategoryId(categoryId);
+		List<Product> products = getAllProductsUnderCategory(categoryId);
 		List<ListProductResponse> listProductResponses = new ArrayList<ListProductResponse>();
 		for (Product product : products) {
 			listProductResponses.add(ProductMapper.INSTANCE.listResponseFromProduct(product));
@@ -127,5 +130,18 @@ public class ProductServiceImpl implements ProductService {
 				throw new BusinessException("Aynı isimde bir ürün zaten var");
 			}
 		}
+	}
+
+	private List<Product> getAllProductsUnderCategory(int categoryId) {
+		List<Product> allProducts = new ArrayList<Product>();
+		List<Product> products = productRepository.findByCategoryId(categoryId);
+		allProducts.addAll(products);
+
+		List<Category> childCategories = categoryRepository.findByParentId(categoryId);
+		for (Category category : childCategories) {
+			allProducts.addAll(getAllProductsUnderCategory(category.getId()));
+		}
+
+		return allProducts;
 	}
 }

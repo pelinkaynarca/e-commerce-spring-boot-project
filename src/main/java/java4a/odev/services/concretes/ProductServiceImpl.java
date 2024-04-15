@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public UpdateProductResponse update(UpdateProductRequest request) {
-		productWithSameNameShouldNotExist(request.getName());
+		productWithSameNameShouldNotExistWhenUpdating(request.getId(), request.getName());
 		Product product = ProductMapper.INSTANCE.productFromUpdateRequest(request);
 		product.setModifiedAt(LocalDateTime.now());
 		Product savedProduct = productRepository.save(product);
@@ -118,5 +118,14 @@ public class ProductServiceImpl implements ProductService {
 
 		if (productWithSameName.isPresent())
 			throw new BusinessException("Aynı isimde bir ürün zaten var");
+	}
+
+	private void productWithSameNameShouldNotExistWhenUpdating(int id, String name) {
+		Optional<Product> productWithSameName = productRepository.findByNameIgnoreCase(name);
+		if (productWithSameName.isPresent()) {
+			if (productWithSameName.get().getId() != id) {
+				throw new BusinessException("Aynı isimde bir ürün zaten var");
+			}
+		}
 	}
 }

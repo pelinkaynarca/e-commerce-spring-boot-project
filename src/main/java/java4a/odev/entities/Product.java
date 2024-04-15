@@ -9,8 +9,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GeneratedColumn;
 
 @Getter
 @Setter
@@ -25,8 +24,7 @@ public class Product {
     private int id;
     @Column(name = "name")
     private String name;
-    @Generated
-    @ColumnDefault(value = "now()")
+    @GeneratedColumn(value = "now()")
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "modified_at")

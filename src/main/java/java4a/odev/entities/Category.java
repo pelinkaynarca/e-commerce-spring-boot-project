@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.GeneratedColumn;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class Category {
     @Column(name = "name")
     private String name;
 
+    @GeneratedColumn(value = "now()")
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

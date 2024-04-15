@@ -41,7 +41,6 @@ public class ImageServiceImpl implements ImageService {
         image = imageRepository.save(image);
         return ImageMapper.INSTANCE.addResponseFromImage(image);
     }
-
     @Override
     public UpdateImageResponse update(UpdateImageRequest request) {
         imageRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("ID'sine sahip bir görsel bulunamadı. " + request.getId()));

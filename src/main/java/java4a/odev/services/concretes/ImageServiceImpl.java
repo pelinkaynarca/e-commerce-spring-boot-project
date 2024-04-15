@@ -61,7 +61,7 @@ public class ImageServiceImpl implements ImageService {
         return imageRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir görsel bulunamadı."));
     }
 
-    private Image productShouldExist(int productId) {
-        return imageRepository.findById(productId).orElseThrow(() -> new BusinessException(productId + "ID'sine sahip bir ürün bulunamadı."));
+    private void productShouldExist(int productId) {
+        imageRepository.findById(productId).orElseThrow(() -> new BusinessException(productId + "ID'sine sahip bir ürün bulunamadı."));
     }
 }

@@ -66,8 +66,7 @@ public class  CityServiceImpl implements CityService {
 
     @Override
     public void delete(int id) {
-        City city = getCityById(id);
-        cityRepository.delete(city);
+        cityRepository.deleteById(id);
     }
 
     private void cityWithSameNameShouldNotExist(String cityName) {
@@ -78,10 +77,10 @@ public class  CityServiceImpl implements CityService {
     }
 
     private City getCityById(int id) {
-        return cityRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir şehir bulunamadı."));
+        return cityRepository.findById(id).orElseThrow(() -> new BusinessException(id + " ID'sine sahip bir şehir bulunamadı."));
     }
 
     private Country getCountryById(int id) {
-        return countryRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir ülke bulunamadı."));
+        return countryRepository.findById(id).orElseThrow(() -> new BusinessException(id + " ID'sine sahip bir ülke bulunamadı."));
     }
 }

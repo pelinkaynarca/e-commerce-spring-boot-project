@@ -3,11 +3,9 @@ package java4a.odev.services.concretes;
 import java4a.odev.core.utils.exceptions.types.BusinessException;
 import java4a.odev.entities.Address;
 import java4a.odev.entities.City;
-import java4a.odev.entities.Country;
 import java4a.odev.entities.User;
 import java4a.odev.repositories.AddressRepository;
 import java4a.odev.repositories.CityRepository;
-import java4a.odev.repositories.CountryRepository;
 import java4a.odev.repositories.UserRepository;
 import java4a.odev.services.abstracts.AddressService;
 import java4a.odev.services.dtos.requests.addresses.AddAddressRequest;
@@ -71,16 +69,15 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void delete(int id) {
-        Address address = getAddressById(id);
-        addressRepository.delete(address);
+        addressRepository.deleteById(id);
         }
 
     private Address getAddressById(int id) {
-        return addressRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir adres bulunamadı."));
+        return addressRepository.findById(id).orElseThrow(() -> new BusinessException(id + " ID'sine sahip bir adres bulunamadı."));
     }
 
     private User getUserById(int id) {
-        return userRepository.findById(id).orElseThrow(() -> new BusinessException(id + "ID'sine sahip bir kullanıcı bulunamadı."));
+        return userRepository.findById(id).orElseThrow(() -> new BusinessException(id + " ID'sine sahip bir kullanıcı bulunamadı."));
     }
 
     private City getCityById(int id) {

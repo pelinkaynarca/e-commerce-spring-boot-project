@@ -45,10 +45,11 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public UpdateCountryResponse update(UpdateCountryRequest request) {
         getCountryById(request.getId());
-        Country updatedCountry = CountryMapper.INSTANCE.countryFromUpdateRequest(request);
-
-        updatedCountry = countryRepository.save(updatedCountry);
         countryWithSameNameShouldNotExist(request.getName());
+
+        Country updatedCountry = CountryMapper.INSTANCE.countryFromUpdateRequest(request);
+        updatedCountry = countryRepository.save(updatedCountry);
+
         return CountryMapper.INSTANCE.updateResponseFromCountry(updatedCountry);
     }
 
@@ -63,9 +64,10 @@ public class CountryServiceImpl implements CountryService {
                 .orElseThrow(() -> new BusinessException("ID'si " + id + " olan ülke bulunamadı."));
     }
     private void countryWithSameNameShouldNotExist(String name) {
-       Optional<Country> countryWithSameName =  countryRepository.findByNameIgnoreCase(name);
-               if(countryWithSameName.isPresent())
-                throw new BusinessException("Aynı isimde bir ülke zaten var");
+        Optional<Country> categoryWithSameName = countryRepository.findByNameIgnoreCase(name);
+
+        if(categoryWithSameName.isPresent())
+            throw new BusinessException("Aynı isimde bir ülke zaten var");
     }
 
 }

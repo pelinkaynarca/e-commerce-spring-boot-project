@@ -48,7 +48,6 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         Category newCategory = CategoryMapper.INSTANCE.categoryFromAddRequest(request, parentCategory);
-
         Category savedCategory = categoryRepository.save(newCategory);
 
         return CategoryMapper.INSTANCE.addResponseCategory(savedCategory);
@@ -56,7 +55,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public UpdateCategoryResponse update(UpdateCategoryRequest request) {
-        categoryWithSameNameShouldNotExist(request.getName());
         Category existingCategory = getCategoryById(request.getId());
 
         Category parentCategory = null;
@@ -64,10 +62,12 @@ public class CategoryServiceImpl implements CategoryService {
             parentCategory = getParentCategoryById(request.getParentId());
         }
 
-        existingCategory.setParent(parentCategory);
+        categoryWithSameNameShouldNotExistForUpdate(request.getName(), request.getId());
 
         Category updatedCategory = CategoryMapper.INSTANCE.categoryFromUpdateRequest(request, existingCategory);
         updatedCategory.setModifiedAt(LocalDateTime.now());
+        updatedCategory.setParent(parentCategory);
+
         Category savedCategory = categoryRepository.save(updatedCategory);
 
         return CategoryMapper.INSTANCE.updateResponseFromCategory(savedCategory);
@@ -93,5 +93,16 @@ public class CategoryServiceImpl implements CategoryService {
 
         if(categoryWithSameName.isPresent())
                 throw new BusinessException("Aynı isimde bir kategori zaten var");
+    }
+    private void categoryWithSameNameShouldNotExistForUpdate(String name, int categoryId) {
+        Optional<Category> existingCategoryWithSameName = categoryRepository.findByNameIgnoreCase(name);
+
+        if (existingCategoryWithSameName.isPresent()) {
+            Category existingCategory = existingCategoryWithSameName.get();
+
+            if (existingCategory.getId() != categoryId) {
+                throw new BusinessException("Aynı isimde başka bir kategori zaten var");
+            }
+        }
     }
 }

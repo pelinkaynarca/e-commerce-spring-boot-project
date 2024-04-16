@@ -18,7 +18,7 @@ public interface CategoryMapper {
     CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
     @Mapping(target = "parentId", source = "category.parent.id")
-    @Mapping(source = "category.modifiedAt", target = "modifiedAt")
+    @Mapping(target = "modifiedAt", source = "category.modifiedAt")
     ListCategoryResponse listResponseFromCategory(Category category);
 
     List<ListCategoryResponse> toListResponseListFromCategoryList(List<Category> categories);
@@ -36,9 +36,9 @@ public interface CategoryMapper {
     @Mapping(target = "parent.id", source = "request.parentId")
     Category categoryFromUpdateRequest(UpdateCategoryRequest request, Category existingCategory);
 
-    @Mapping(source = "category.id", target = "id")
-    @Mapping(source = "category.name", target = "name")
-    @Mapping(source = "category.parent.id", target = "parentId")
-    UpdateCategoryResponse updateResposneFromCategory(Category category);
+    @Mapping(target = "id", source = "category.id")
+    @Mapping(target = "name", source = "category.name")
+    @Mapping(target = "parentId", source = "category.parent.id")
+    UpdateCategoryResponse updateResponseFromCategory(Category category);
 }
 

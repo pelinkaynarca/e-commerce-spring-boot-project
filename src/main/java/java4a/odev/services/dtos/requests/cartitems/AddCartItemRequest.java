@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCartItemsRequest {
+public class AddCartItemRequest {
     @Min(value = 1, message = "Sepet miktarı 1'den küçük olamaz.")
     private int quantity;
 

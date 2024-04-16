@@ -40,17 +40,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public AddCategoryResponse add(AddCategoryRequest request) {
-
+        categoryWithSameNameShouldNotExist(request.getName());
         Category parentCategory = null;
 
         if (request.getParentId() != null) {
             parentCategory = getParentCategoryById(request.getParentId());
         }
 
-        categoryWithSameNameShouldNotExist(request.getName());
         Category newCategory = CategoryMapper.INSTANCE.categoryFromAddRequest(request, parentCategory);
-
-        newCategory.setCreatedAt(LocalDateTime.now());
 
         Category savedCategory = categoryRepository.save(newCategory);
 
@@ -59,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public UpdateCategoryResponse update(UpdateCategoryRequest request) {
-
+        categoryWithSameNameShouldNotExist(request.getName());
         Category existingCategory = getCategoryById(request.getId());
 
         Category parentCategory = null;
@@ -69,13 +66,11 @@ public class CategoryServiceImpl implements CategoryService {
 
         existingCategory.setParent(parentCategory);
 
-        categoryWithSameNameShouldNotExist(request.getName());
-
         Category updatedCategory = CategoryMapper.INSTANCE.categoryFromUpdateRequest(request, existingCategory);
         updatedCategory.setModifiedAt(LocalDateTime.now());
         Category savedCategory = categoryRepository.save(updatedCategory);
 
-        return CategoryMapper.INSTANCE.updateResposneFromCategory(savedCategory);
+        return CategoryMapper.INSTANCE.updateResponseFromCategory(savedCategory);
     }
 
     @Override

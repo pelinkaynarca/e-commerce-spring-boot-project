@@ -3,8 +3,8 @@ package java4a.odev.controllers;
 import jakarta.validation.Valid;
 
 import java4a.odev.services.abstracts.CartItemService;
-import java4a.odev.services.dtos.requests.cartitems.AddCartItemsRequest;
-import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemsRequest;
+import java4a.odev.services.dtos.requests.cartitems.AddCartItemRequest;
+import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemRequest;
 import java4a.odev.services.dtos.responses.cartitems.AddCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.ListCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.UpdateCartItemResponse;
@@ -33,12 +33,12 @@ public class CartItemsController {
 
     @PostMapping("/create-cart-item")
     @ResponseStatus(HttpStatus.CREATED)
-    public AddCartItemResponse add(@RequestBody @Valid AddCartItemsRequest request) {
+    public AddCartItemResponse add(@RequestBody @Valid AddCartItemRequest request) {
         return cartItemService.add(request);
     }
 
     @PutMapping("/update-cart-item")
-    public UpdateCartItemResponse update(@RequestBody @Valid UpdateCartItemsRequest request) {
+    public UpdateCartItemResponse update(@RequestBody @Valid UpdateCartItemRequest request) {
         return cartItemService.update(request);
     }
 

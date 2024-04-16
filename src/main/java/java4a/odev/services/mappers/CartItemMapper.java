@@ -1,12 +1,12 @@
 package java4a.odev.services.mappers;
 
+import java4a.odev.services.dtos.requests.cartitems.AddCartItemRequest;
+import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java4a.odev.entities.CartItem;
-import java4a.odev.services.dtos.requests.cartitems.AddCartItemsRequest;
-import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemsRequest;
 import java4a.odev.services.dtos.responses.cartitems.AddCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.ListCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.UpdateCartItemResponse;
@@ -24,7 +24,7 @@ public interface CartItemMapper {
 	@Mapping(target = "product.id", source = "productId")
 	@Mapping(target = "user.id", source = "userId")
 	@Mapping(target = "id", ignore = true)
-	CartItem cartItemFromAddRequest(AddCartItemsRequest request);
+	CartItem cartItemFromAddRequest(AddCartItemRequest request);
 
 	@Mapping(target = "productName", source = "product.name")
 	@Mapping(target = "userFirstName", source = "user.firstName")
@@ -34,7 +34,7 @@ public interface CartItemMapper {
 	@Mapping(target = "product.id", source = "productId")
 	@Mapping(target = "user.id", source = "userId")
 	@Mapping(target = "id", ignore = true)
-	CartItem cartItemFromUpdateRequest(UpdateCartItemsRequest request);
+	CartItem cartItemFromUpdateRequest(UpdateCartItemRequest request);
 
 	@Mapping(target = "productName", source = "product.name")
 	@Mapping(target = "userFirstName", source = "user.firstName")

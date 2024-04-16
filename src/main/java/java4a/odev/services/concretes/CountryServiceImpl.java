@@ -24,13 +24,13 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public List<ListCountryResponse> getAll() {
         List<Country> countries = countryRepository.findAll();
-        return CountryMapper.INSTANCE.toListResponseListFromCategoryList(countries);
+        return CountryMapper.INSTANCE.ListResponseListFromCountryList(countries);
     }
 
     @Override
     public ListCountryResponse getById(int id) {
         Country country = getCountryById(id);
-        return CountryMapper.INSTANCE.toListCountryResponse(country);
+        return CountryMapper.INSTANCE.listResponseFromCountry(country);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void delete(int id) {
-       Country country =  getCountryById(id);
+       Country country = getCountryById(id);
        countryRepository.delete(country);
     }
 

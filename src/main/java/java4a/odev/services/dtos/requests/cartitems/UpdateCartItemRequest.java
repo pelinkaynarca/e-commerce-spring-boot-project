@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateCartItemsRequest {
+public class UpdateCartItemRequest {
     @Min(value = 1, message = "Geçerli bir ID numarası girilmelidir.")
     private int id;
 

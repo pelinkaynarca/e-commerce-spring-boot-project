@@ -16,9 +16,9 @@ import java.util.List;
 public interface CountryMapper {
     CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
 
-    ListCountryResponse toListCountryResponse(Country country);
+    ListCountryResponse listResponseFromCountry(Country country);
 
-    List<ListCountryResponse> toListResponseListFromCategoryList(List<Country> countries);
+    List<ListCountryResponse> ListResponseListFromCountryList(List<Country> countries);
 
     Country countryFromAddRequest(AddCountryRequest request);
 
@@ -28,8 +28,8 @@ public interface CountryMapper {
     @Mapping(target = "name", source = "request.name")
     Country countryFromUpdateRequest(UpdateCountryRequest request);
 
-    @Mapping(source = "country.id", target = "id")
-    @Mapping(source = "country.name", target = "name")
+    @Mapping(target = "id", source = "country.id")
+    @Mapping(target = "name", source = "country.name")
     UpdateCountryResponse updateResponseFromCountry(Country country);
 
 

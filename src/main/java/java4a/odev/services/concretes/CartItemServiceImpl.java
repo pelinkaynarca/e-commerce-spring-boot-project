@@ -3,6 +3,7 @@ package java4a.odev.services.concretes;
 import java.util.ArrayList;
 import java.util.List;
 
+import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemRequest;
 import org.springframework.stereotype.Service;
 
 import java4a.odev.core.utils.exceptions.types.BusinessException;
@@ -11,8 +12,7 @@ import java4a.odev.entities.Product;
 import java4a.odev.repositories.CartItemRepository;
 import java4a.odev.repositories.ProductRepository;
 import java4a.odev.services.abstracts.CartItemService;
-import java4a.odev.services.dtos.requests.cartitems.AddCartItemsRequest;
-import java4a.odev.services.dtos.requests.cartitems.UpdateCartItemsRequest;
+import java4a.odev.services.dtos.requests.cartitems.AddCartItemRequest;
 import java4a.odev.services.dtos.responses.cartitems.AddCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.ListCartItemResponse;
 import java4a.odev.services.dtos.responses.cartitems.UpdateCartItemResponse;
@@ -44,7 +44,7 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public AddCartItemResponse add(AddCartItemsRequest request) {
+	public AddCartItemResponse add(AddCartItemRequest request) {
 		productMustBeInStockBeforeAddingToUserCart(request.getProductId(), request.getUserId(), request.getQuantity());
 		CartItem cartItem = CartItemMapper.INSTANCE.cartItemFromAddRequest(request);
 
@@ -53,7 +53,7 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public UpdateCartItemResponse update(UpdateCartItemsRequest request) {
+	public UpdateCartItemResponse update(UpdateCartItemRequest request) {
 		productShouldExistAndMustBeInStock(request.getProductId(), request.getQuantity());
 		CartItem cartItemToBeSaved = CartItemMapper.INSTANCE.cartItemFromUpdateRequest(request);
 		CartItem cartItemInDB = cartItemRepository.findByUserIdAndProductId(request.getUserId(), request.getProductId())
